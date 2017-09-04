@@ -1,24 +1,92 @@
 package Model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
-public class Client {
 
+import Controleur.MainApp;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
+/**
+ * Classe Prospect fille de la Classe Societe
+ * 
+ * @author Pauline.G
+ */
+
+public class Client extends Societe{
 	
-	private StringProperty type;
+
+	private final  IntegerProperty indexTypeBox;
+	private static int numVrpCompteur;
+	private String numVrp;
+	int indexClient = 2;
 	
-	private Client(){
-		this.type = new SimpleStringProperty(type);
+public MainApp mainApp;
+
+private ObjectProperty<Representant> representant;
+
+
+
+	public Client(){
+		this(null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);
+	}
+
+
+	public Client(String raisonSociale, Integer siren, String region, Integer idCompany, Integer numVoie,
+			String typeVoie, String voie, String complement, String codePostal, String ville, String nom, String prenom,
+			String mail, String tel, String numVrp, Integer nbCommande) {
+		super(raisonSociale, siren, region, idCompany, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
+				prenom, mail, tel, numVrp, nbCommande);
+		this.indexTypeBox = new SimpleIntegerProperty(02);
+		this.setNbCommande(1);
+		
+		for(Representant vrp : MainApp.getVrp()){
+			if(numVrp.equals(vrp.getNumVrp())){
+				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
+		}//end for
+		
+		numVrpCompteur ++;
+		String numCompteur = Integer.toString(numVrpCompteur);
+		numVrp = numCompteur;
+			
+	} //end Constuctor	
+	
+
+	public int getIndexClient(){
+		return indexClient=2;
 	}
 	
-	public String getType(){
-		return type.get();
+	
+	public Integer getIndexTypeBox(){
+		return indexTypeBox.get();
 	}
 	
-	public void setType(String type){
-		this.type.set(type);
+	public void setIndexTypeBox(Integer indexTypeBox){
+		this.indexTypeBox.set(indexTypeBox);
 	}
-}
+	
+	public IntegerProperty indexTypeBoxProperty(){
+		return indexTypeBox;
+	}
+		
+	public int getnumVrpCompteur(){
+		return numVrpCompteur;
+	}
+	
+	public void setnumVrpCompteur(int numVrp){
+		numVrpCompteur = numVrpCompteur;
+	}
 
+	public  void setRepresentant(Representant value){
+		representant.set(value);}
+	
+	public Representant getRepresentant(){
+		return representant.get();
+	}
+	
+	
+	
+	
+}// end Prospect
 
