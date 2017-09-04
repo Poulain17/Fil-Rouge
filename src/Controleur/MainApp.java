@@ -21,7 +21,6 @@ import Model.Prospect;
 import Model.ProspectListWrapper;
 import Model.Representant;
 import Model.TypeBox;
-import Model.VrpBox;
 import View.BaseLogicielController;
 import View.EditDialogController;
 import View.ProspectFrameContoller;
@@ -44,8 +43,8 @@ public class MainApp extends Application {
 	public static BorderPane rootLayout;
 	private ObservableList<Prospect> prospectData = FXCollections.observableArrayList();
 	private static ObservableList<Representant> vrpData = FXCollections.observableArrayList();
-	private static ObservableList<Client> client = FXCollections.observableArrayList();
 	private ObservableList<TypeBox> typeBoxData = FXCollections.observableArrayList();
+	private static ObservableList<Client> clientData = FXCollections.observableArrayList();
 	//private ObservableList<VrpBox> vrpBoxData = FXCollections.observableArrayList();
 	
 
@@ -55,40 +54,40 @@ public class MainApp extends Application {
 		
 
 		/**
-		 * Instanciation des données Representant
+		 * Instanciation des donnÃ©es Representant
 		 */
 		
 		
-		Representant r1 = new Representant("10","Harleen","Quinzel","Dupont.Jacques@toutbois.fr","0625489752","Nord");
-		vrpData.add(r1);
-		Representant r2 = new Representant("20","Bruce","Banner","Deville.J@ulientoutbois.fr","0784934574","Ouest");
-		vrpData.add(r2);
-		Representant r3 = new Representant("30","Arthur","Accroc","Molinel.Sabine@toutbois.fr","0678963214","Sud-Ouest");
-		vrpData.add(r3);
-		Representant r4 = new Representant("40","Guigue","Noemie","Guigue.Noemie@toutbois.fr","0681497521","Est");
-		vrpData.add(r4);
-		Representant r5 = new Representant("50","Peter","Quill","Star.Lord@toutbois.fr","0748956217","Ile-De-France");
-		vrpData.add(r5);
-
-
+		vrpData.add(new Representant("10","Harleen","Quinzel","Dupont.Jacques@toutbois.fr","0625489752","Nord"));
+		vrpData.add(new Representant("20","Bruce","Banner","Deville.J@ulientoutbois.fr","0784934574","Ouest"));
+		vrpData.add(new Representant("30","Arthur","Accroc","Molinel.Sabine@toutbois.fr","0678963214","Sud-Ouest"));
+		vrpData.add(new Representant("40","Guigue","Noemie","Guigue.Noemie@toutbois.fr","0681497521","Est"));
+		vrpData.add(new Representant("50","Peter","Quill","Star.Lord@toutbois.fr","0748956217","Ile-De-France"));
 
 		/**
-		 * Instanciation des données Prospect
+		 * Instanciation des donnÃ©e ComboBox de le fenetre de MAJ prospect
 		 */
-		prospectData.add(new Prospect("Le Bois Du Nord Savare",323995357,"Ouest",124875,4,"Rue","Augustin Fresnel","","35400","Saint Malo","Duval","Frederic","contact@savare.com","0299453190","20"));
-		prospectData.add(new Prospect("Midas",323995357,"Sud-Ouest",789315,1,"Route","D'Ygos","","40090","Saint Martin D'oney","Stockstone","David","st.da@hotmail.fr","0558520015","30"));
-		prospectData.add(new Prospect("Sarl Tressibois",318210507,"Nord",521478,1,"Rue","Du Gressart","","59152","Tressin ","Leconte","Claude","admin@tressibois.fr","0320854976","10"));
-		prospectData.add(new Prospect("Solutions Bois",494596737,"Est",458716,20,"Allée","Des Grands Paquis","","54180","Heillecourt","Lejal","Sylvain","leja.sylvain@outlook.com","0383270021","40"));
-		prospectData.add(new Prospect("Menuiserie Wood",441615168,"Ile-De-France",951234,73,"Avenue","De La Republique","","91560","Cosne","Martins","Joaquim","Joaquim,martins.joaquim@wood.fr","0169459188","50"));
-
-		
-		/**
-		 * Instanciation des donnée ComboBox de le fenetre de MAJ prospect
-		 */
-		typeBoxData.add(new TypeBox(1,"Prospect"));
-		typeBoxData.add(new TypeBox(2,"Client"));
+		TypeBox t1 = new TypeBox(1,"Prospect");
+		typeBoxData.add(t1);
+		TypeBox t2 = new TypeBox(2,"Client");
+		typeBoxData.add(t2);
 		for (int i=0;i<typeBoxData.size();i++){
 			System.out.println(typeBoxData.get(i).toString());}
+		
+			
+		
+
+		/**
+		 * Instanciation des donnÃ©es Prospect
+		 */
+		prospectData.add(new Prospect("Le Bois Du Nord Savare",323995357,"Ouest",100001,4,"Rue","Augustin Fresnel","","35400","Saint Malo","Duval","Frederic","contact@savare.com","0299453190","20",0));
+		prospectData.add(new Prospect("Midas",323995357,"Sud-Ouest",100002,1,"Route","D'Ygos","","40090","Saint Martin D'oney","Stockstone","David","st.da@hotmail.fr","0558520015","30",0));
+		prospectData.add(new Prospect("Sarl Tressibois",318210507,"Nord",100003,1,"Rue","Du Gressart","","59152","Tressin ","Leconte","Claude","admin@tressibois.fr","0320854976","10",0));
+		prospectData.add(new Prospect("Solutions Bois",494596737,"Est",100004,20,"AllÃ©e","Des Grands Paquis","","54180","Heillecourt","Lejal","Sylvain","leja.sylvain@outlook.com","0383270021","40",0));
+		prospectData.add(new Prospect("Menuiserie Wood",441615168,"Ile-De-France",100005,73,"Avenue","De La Republique","","91560","Cosne","Martins","Joaquim","Joaquim,martins.joaquim@wood.fr","0169459188","50",0));
+
+		
+
 		
 		
 	} // end MainApp
@@ -109,9 +108,9 @@ public class MainApp extends Application {
 	public static ObservableList<Representant> getVrp(){
 		return vrpData;}
 	
-	public static ObservableList<Client> getClient(){
-		return client;
-	}
+	public static ObservableList<Client>getClientData(){
+		return clientData;}
+
 	
 	
 	
@@ -170,10 +169,10 @@ public class MainApp extends Application {
 //////////////////////////// AFFICHAGE DE LA FENETRE DE MISE A JOUR \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
 	/**
-	 * Ouverture de la fenetre de Mise à jour des données société.
+	 * Ouverture de la fenetre de Mise Ã  jour des donnÃ©es sociÃ©tÃ©.
 	 * 
 	 * @param handleOk
-	 * @return Sauvegarde des données modifiées.
+	 * @return Sauvegarde des donnÃ©es modifiÃ©es.
 	 */
 
 	 public boolean showEditDialog(Prospect prospect) {
@@ -184,7 +183,7 @@ public class MainApp extends Application {
 	            AnchorPane ProspectFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
-	            dialogStage.setTitle("Mise à Jour");
+	            dialogStage.setTitle("Mise Ã  Jour");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(primaryStage);
 	            Scene scene = new Scene(ProspectFrame);
@@ -233,13 +232,13 @@ public class MainApp extends Application {
 	 //////////////////////////// LECTURE ET ECRITURE DES DONNEES SOCIETE \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	 
 	 /**
-	  * Telecharge les données sociétés du fichier source. Remplace ces données
-	  * suite à la sauvegarde
+	  * Telecharge les donnÃ©es sociÃ©tÃ©s du fichier source. Remplace ces donnÃ©es
+	  * suite Ã  la sauvegarde
 	  * 
 	  * @param file
 	  */
 	
-	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
+	 			/////////////////// Telechargement des donnÃ©es  \\\\\\\\\\\\\\\\\\\
 	/* public void loadSocieteDataFromFile(File file){
 		 try{
 			 JAXBContext context = JAXBContext.newInstance(ProspectListWrapper.class);
@@ -253,13 +252,13 @@ public class MainApp extends Application {
 			 }catch (Exception e){
 				  Alert alert = new Alert(AlertType.ERROR);
 			        alert.setTitle("Erreur");
-			        alert.setHeaderText("Impossible de charger les données");
-			        alert.setContentText("Impossible de chargé les données depuis le fichier : \n" + file.getPath());
+			        alert.setHeaderText("Impossible de charger les donnÃ©es");
+			        alert.setContentText("Impossible de chargÃ© les donnÃ©es depuis le fichier : \n" + file.getPath());
 
 			        alert.showAndWait();}
 			 }*/
 		 
-	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
+	 			/////////////////// Telechargement des donnÃ©es  \\\\\\\\\\\\\\\\\\\
 	 
 	 /*public void SaveSocieteDataToFile(File file){
 		 try{
@@ -275,8 +274,8 @@ public class MainApp extends Application {
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
 		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les données");
-		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
+		        alert.setHeaderText("Impossible de sauvegarder les donnÃ©es");
+		        alert.setContentText("Impossible de sauvegarder les donnÃ©es depuis le fichier :\n" + file.getPath());
 
 		        alert.showAndWait();
 			 
