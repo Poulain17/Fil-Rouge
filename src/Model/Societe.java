@@ -3,7 +3,7 @@ package Model;
 
 
 /**
- * Classe Mère Societe
+ * Classe MÃ¨re Societe
  * 
  * @author Pauline G.
  */
@@ -30,8 +30,8 @@ public class Societe {
 	private final StringProperty prenom;
 	private final StringProperty mail;
 	private final StringProperty tel;
-	private final IntegerProperty indexTypeBox;
 	private final StringProperty numVrp;
+	private final IntegerProperty nbCommande;
 
 	public MainApp mainApp;
 	Representant representant;
@@ -63,12 +63,12 @@ public class Societe {
 
 	
 	public Societe(){
-		this(null,0,null,0,0,null,null,null,null,null,null,null,null,null,null);
+		this(null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);
 		
 	}
 
 	public Societe(String raisonSociale, Integer siren, String region, Integer idCompany, Integer numVoie, String typeVoie, String voie, 
-			String complement, String codePostal, String ville, String nom, String prenom, String mail, String tel, String numVrp) {
+			String complement, String codePostal, String ville, String nom, String prenom, String mail, String tel, String numVrp, Integer nbCommande) {
 
 		this.raisonSociale = new SimpleStringProperty(raisonSociale);
 		this.siren = new SimpleIntegerProperty(siren);
@@ -84,8 +84,8 @@ public class Societe {
 		this.prenom = new SimpleStringProperty(prenom);
 		this.mail = new SimpleStringProperty(mail);
 		this.tel = new SimpleStringProperty(tel);
-		this.indexTypeBox = new SimpleIntegerProperty(0);
-		this.numVrp = new SimpleStringProperty(numVrp);}
+		this.numVrp = new SimpleStringProperty(numVrp);
+		this.nbCommande = new SimpleIntegerProperty(nbCommande);}
 	
 	public void  setMainApp(MainApp mainApp){
 		mainApp = mainApp;
@@ -200,29 +200,26 @@ public class Societe {
 	
 	public StringProperty telProperty(){
 		return tel;}
-	
-	public Integer getIndexTypeBox(){
-		return indexTypeBox.get();
-	}
-	
-	public void setIndexTypeBox(Integer indexTypeBox){
-		this.indexTypeBox.set(indexTypeBox);
-	}
-	
-	public IntegerProperty indexTypeBoxProperty(){
-		return indexTypeBox;
-	}
-	
+
 	public String getNumVrp(){
-		return numVrp.get();		
-	}
+		return numVrp.get();}
 	
 	public void setNumVrp(String numVrp){
 		this.numVrp.set(numVrp);}
 	
 	public StringProperty numVrpProperty(){
 		return numVrp;}
+	
+	public Integer getNbCommande() {
+		return nbCommande.get();}
+	
+	public void setNbCommande(Integer nbCommande){
+		this.nbCommande.set(nbCommande);}
+	
+	public IntegerProperty nbCommandeProperty(){
+		return nbCommande;}
 
 
 }// End Class
+
 
