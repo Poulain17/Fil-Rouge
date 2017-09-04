@@ -9,6 +9,7 @@ import org.omg.Messaging.SyncScopeHelper;
  */
 
 import Controleur.MainApp;
+import Model.Client;
 import Model.Prospect;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -72,10 +73,14 @@ public class ProspectFrameContoller {
 	private Label  regionVrp;
 	@FXML
 	private Label numVrp;
+	@FXML
+	private Label nbCommande;
 
 	
 	
 	private MainApp mainApp;
+	public static Prospect selectVrp;
+	public static int toClient = 0;
 
 
 	public ProspectFrameContoller(){}
@@ -126,8 +131,9 @@ public class ProspectFrameContoller {
 			regionVrp.setText(prospect.getRepresentant().getregionVrp());
 			
 			i=prospect.getIndexTypeBox();
-			type.setText(Integer.toString(i)+" "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
+			type.setText(Integer.toString(i)+" - "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
 
+			nbCommande.setText(Integer.toString(prospect.getNbCommande()));
 		}else{
 			type.setText("");
 			raisonSociale.setText("");
@@ -179,8 +185,8 @@ public class ProspectFrameContoller {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(mainApp.getPrimaryStage());
 			alert.setTitle("Aucune Selection");
-			alert.setHeaderText("Aucune données Selectionnées");
-			alert.setContentText("Veuillez selectionner une société");
+			alert.setHeaderText("Aucune donnÃ©es SelectionnÃ©es");
+			alert.setContentText("Veuillez selectionner une sociÃ©tÃ©");
 			
 			alert.showAndWait();
 		}
@@ -198,11 +204,15 @@ public class ProspectFrameContoller {
 		        Alert alert = new Alert(AlertType.WARNING);
 		        alert.initOwner(mainApp.getPrimaryStage());
 		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Aucune donnée séléctionnée");
-		        alert.setContentText("Merci de séléctionner une donnée.");
+		        alert.setHeaderText("Aucune donnÃ©e sÃ©lÃ©ctionnÃ©e");
+		        alert.setContentText("Merci de sÃ©lÃ©ctionner une donnÃ©e.");
 
 		        alert.showAndWait();
 		    }
 		}
+	
+	//********************** Transfert de collections 	**********************//
+
+	
 	
 }//end prospectFrameController
