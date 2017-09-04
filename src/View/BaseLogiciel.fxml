@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BaseLogicielController">
+   <center>
+      <AnchorPane prefHeight="831.0" prefWidth="800.0" styleClass="background2" stylesheets="@../../bin/View/ThemeToutBois.css" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <AnchorPane prefHeight="813.0" prefWidth="200.0" styleClass="background" stylesheets="@../../bin/View/ThemeToutBois.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="491.0" fitWidth="200.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <image>
+                  <Image url="@../../bin/View/Image/ImageLogin.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" text="Client" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="80.0" />
+            <Button mnemonicParsing="false" onAction="#HandleshowProspectFrame" text="Prospect" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="163.0" />
+            <Button mnemonicParsing="false" text="Representant" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="246.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <MenuBar prefHeight="25.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+        <menus>
+            <Menu mnemonicParsing="false" text="Nouveau">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Client" />
+                  <MenuItem mnemonicParsing="false" text="Prospect" />
+                  <MenuItem mnemonicParsing="false" text="Representant" />
+              <MenuItem mnemonicParsing="false" text="Fermer" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ouvrir">
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Client" />
+                <MenuItem mnemonicParsing="false" text="Prospect" />
+                  <MenuItem mnemonicParsing="false" text="Representant" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
