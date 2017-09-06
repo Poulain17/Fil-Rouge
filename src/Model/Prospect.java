@@ -28,7 +28,7 @@ private ObjectProperty<Representant> representant;
 
 
 	public Prospect(){
-		this(0,null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);}
+		this(0,null,0,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
 
 
 	public Prospect(Integer indexType,String raisonSociale, Integer siren, Integer indexRegion, Integer idCompany, Integer numVoie,
