@@ -19,6 +19,9 @@ public class Prospect extends Societe{
 	
 
 	private final  IntegerProperty indexTypeBox;
+	private final IntegerProperty indexRegionBox;
+	private final IntegerProperty indexNumVrpBox;
+
 	private static int numVrpCompteur;
 	private String numVrp;
 	public Prospect selectedProspect;
@@ -38,10 +41,12 @@ private ObjectProperty<Representant> representant;
 		super(raisonSociale, siren, region, idCompany, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
 				prenom, mail, tel, numVrp, nbCommande);
 		this.indexTypeBox = new SimpleIntegerProperty(01);
+		this.indexRegionBox = new SimpleIntegerProperty(0);
+		this.indexNumVrpBox = new SimpleIntegerProperty(0);
 		this.setNbCommande(0);
 		
 		for(Representant vrp : MainApp.getVrp()){
-			if(numVrp.equals(vrp.getNumVrp())){
+			if(numVrp == (vrp.getNumVrp())){
 				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
 		}//end for
 	
@@ -54,6 +59,9 @@ private ObjectProperty<Representant> representant;
 	
 	
 	
+	
+		
+
 	public Integer getIndexTypeBox(){
 		return indexTypeBox.get();
 	}
@@ -64,6 +72,30 @@ private ObjectProperty<Representant> representant;
 	
 	public IntegerProperty indexTypeBoxProperty(){
 		return indexTypeBox;
+	}
+	
+	public Integer getIndexNumVrpBox(){
+		return indexNumVrpBox.get();
+	}
+	
+	public void setIndexNumVrpBox(Integer indexNumVrpBox){
+		this.indexNumVrpBox.set(indexNumVrpBox);
+	}
+	
+	public IntegerProperty indexNumVrpBoxProperty(){
+		return indexNumVrpBox;
+	}
+	
+	public Integer getIndexRegionBox(){
+		return indexTypeBox.get();
+	}
+	
+	public void setIndexRegionBox(Integer indexRegionBox){
+		this.indexRegionBox.set(indexRegionBox);
+	}
+	
+	public IntegerProperty indexRegionBoxProperty(){
+		return indexRegionBox;
 	}
 		
 	public int getnumVrpCompteur(){
@@ -85,4 +117,3 @@ private ObjectProperty<Representant> representant;
 	
 	
 }// end Prospect
-
