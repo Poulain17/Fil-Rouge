@@ -17,7 +17,7 @@ public class Representant {
 	
 	
 	
-
+	
 	private final StringProperty numVrp;
 	private final StringProperty nomVrp;
 	private final StringProperty prenomVrp;
@@ -33,12 +33,12 @@ public class Representant {
 		this(null,null, null, null, null, null,0,0);
 	}
 
-	public Representant(String numVrp, String nomVrp, String prebomVrp,
+	public Representant(String numVrp, String nomVrp, String prenomVrp,
 			String mailVrp, String telVrp, String regionVrp, Integer salaireVrp, Integer commVrp) {
 
 		this.numVrp = new SimpleStringProperty(numVrp);
 		this.nomVrp = new SimpleStringProperty(nomVrp);
-		this.prenomVrp = new SimpleStringProperty(prebomVrp);
+		this.prenomVrp = new SimpleStringProperty(prenomVrp);
 		this.mailVrp = new SimpleStringProperty(mailVrp);
 		this.telVrp = new SimpleStringProperty(telVrp);
 		this.regionVrp = new SimpleStringProperty(regionVrp);

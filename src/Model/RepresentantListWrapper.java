@@ -12,19 +12,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Pauline G.
  */
 
-@XmlRootElement(name = "Representant")
+@XmlRootElement(name = "ListRepresentant")
 
 public class RepresentantListWrapper {
 
 
 		private List<Representant> listRepresentant;
 		
-		@XmlElement(name = "NumVrp")
+		@XmlElement(name = "Representant")
 		public List<Representant> getlistRepresentant(){
 			return listRepresentant;}
 		
-		public void setlistRepresentant(List<Representant>listTypeBox){
-			this.listRepresentant = listTypeBox;}
+		public void setlistRepresentant(List<Representant>listRepresentant){
+			this.listRepresentant = listRepresentant;}
 
 
 }
