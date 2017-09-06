@@ -26,6 +26,7 @@ import Model.RepresentantListWrapper;
 import Model.TypeBox;
 import View.BaseLogicielController;
 import View.ClientFrameController;
+import View.EditDialogClientContoller;
 import View.EditDialogController;
 import View.ProspectFrameContoller;
 import View.RepresentantEditDialogueController;
@@ -50,7 +51,7 @@ public class MainApp extends Application {
 	private ObservableList<Prospect> prospectData = FXCollections.observableArrayList();
 	private static ObservableList<Representant> vrpData = FXCollections.observableArrayList();
 	private ObservableList<TypeBox> typeBoxData = FXCollections.observableArrayList();
-	private static ObservableList<Client> clientData = FXCollections.observableArrayList();
+	private ObservableList<Client> clientData = FXCollections.observableArrayList();
 	private ObservableList<RegionBox> regionBoxData = FXCollections.observableArrayList();
 
 	
@@ -61,7 +62,7 @@ public class MainApp extends Application {
 		
 
 		/**
-		 * Instanciation des donnÃ©es Representant
+		 * Instanciation des données Representant
 		 */
 		
 		
@@ -73,50 +74,43 @@ public class MainApp extends Application {
 		vrpData.add(new Representant("60","James","Kirk","starFleet@toutbois.fr","0625487914","Sud-Est",2680,15));
 
 		/**
-		 * Instanciation des donnÃ©e ComboBox de le fenetre de MAJ prospect
+		 * Instanciation des donnée ComboBox de le fenetre de MAJ prospect
 		 */
-		TypeBox t1 = new TypeBox(1,"Prospect");
-		typeBoxData.add(t1);
-		TypeBox t2 = new TypeBox(2,"Client");
-		typeBoxData.add(t2);
+		typeBoxData.add(new TypeBox(1,"Prospect"));
+		typeBoxData.add(new TypeBox(2,"Client"));
 		for (int i=0;i<typeBoxData.size();i++){
 			System.out.println(typeBoxData.get(i).toString());}
 		
-		RegionBox r1 = new RegionBox(1,"Nord");
-		regionBoxData.add(r1);
-		RegionBox r2 = new RegionBox(2,"Ouest");
-		regionBoxData.add(r2);
-		RegionBox r3 = new RegionBox(3,"Sud-Ouest");
-		regionBoxData.add(r3);
-		RegionBox r4 = new RegionBox(4,"Est");
-		regionBoxData.add(r4);
-		RegionBox r5 = new RegionBox(5,"Ile-deFrance");
-		regionBoxData.add(r5);
-		RegionBox r6 = new RegionBox(6,"Sud-Est");
-		regionBoxData.add(r6);
-		for (int a=0;a<typeBoxData.size();a++){
-			System.out.println(typeBoxData.get(a).toString());}
+
+		regionBoxData.add(new RegionBox(1,"Nord"));
+		regionBoxData.add(new RegionBox(2,"Ouest"));
+		regionBoxData.add(new RegionBox(3,"Sud-Ouest"));
+		regionBoxData.add(new RegionBox(4,"Est"));
+		regionBoxData.add(new RegionBox(5,"Ile-deFrance"));
+		regionBoxData.add(new RegionBox(6,"Sud-Est"));
+		for (int a=0;a<regionBoxData.size();a++){
+			System.out.println(regionBoxData.get(a).toString());}
 		
 		
 		
 
 		/**
-		 * Instanciation des donnÃ©es Prospect
+		 * Instanciation des données Prospect
 		 */
-		prospectData.add(new Prospect("Le Bois Du Nord Savare",323995357,"Ouest",100001,4,"Rue","Augustin Fresnel","","35400","Saint Malo","Duval","Frederic","contact@savare.com","0299453190","20",0));
-		prospectData.add(new Prospect("Midas",323995357,"Sud-Ouest",100002,1,"Route","D'Ygos","","40090","Saint Martin D'oney","Stockstone","David","st.da@hotmail.fr","0558520015","30",0));
-		prospectData.add(new Prospect("Sarl Tressibois",318210507,"Nord",100003,1,"Rue","Du Gressart","","59152","Tressin ","Leconte","Claude","admin@tressibois.fr","0320854976","10",0));
-		prospectData.add(new Prospect("Solutions Bois",494596737,"Est",100004,20,"AllÃ©e","Des Grands Paquis","","54180","Heillecourt","Lejal","Sylvain","leja.sylvain@outlook.com","0383270021","40",0));
-		prospectData.add(new Prospect("Menuiserie Wood",441615168,"Ile-De-France",100005,73,"Avenue","De La Republique","","91560","Cosne","Martins","Joaquim","Joaquim,martins.joaquim@wood.fr","0169459188","50",0));
+		prospectData.add(new Prospect(1,"Le Bois Du Nord Savare",323995357,2,100001,4,"Rue","Augustin Fresnel","","35400","Saint Malo","Duval","Frederic","contact@savare.com","0299453190","20",0));
+		prospectData.add(new Prospect(1,"Midas",323995357,3,100002,1,"Route","D'Ygos","","40090","Saint Martin D'oney","Stockstone","David","st.da@hotmail.fr","0558520015","30",0));
+		prospectData.add(new Prospect(1,"Sarl Tressibois",318210507,1,100003,1,"Rue","Du Gressart","","59152","Tressin ","Leconte","Claude","admin@tressibois.fr","0320854976","10",0));
+		prospectData.add(new Prospect(1,"Solutions Bois",494596737,4,100004,20,"Allée","Des Grands Paquis","","54180","Heillecourt","Lejal","Sylvain","leja.sylvain@outlook.com","0383270021","40",0));
+		prospectData.add(new Prospect(1,"Menuiserie Wood",441615168,5,100005,73,"Avenue","De La Republique","","91560","Cosne","Martins","Joaquim","Joaquim,martins.joaquim@wood.fr","0169459188","50",0));
 
 		/**
-		 * Instanciation des donnÃ©es Client
+		 * Instanciation des données Client
 		 */
-		clientData.add(new Client("Bricot Depot",451647903,"Ile-De-France",200001,30,"Rue","De La Tourelle","CS 60501 Longpont Sur Orge","91315","Montlhery Cedex","Laporte","Marc","laporte.marc@Bricotdepot.fr","0625489712","50",12));
-		clientData.add(new Client("Meubles Meyer",301273751,"Est",200002,70,"Rue","Du General Leclerc","","67270","Schwindratzheim","Lucie","Schaeffer","commercial@meyer.fr","0388919992","40",4));
-		clientData.add(new Client("Demeure de Famille",434856381,"Nord",200003,39,"Rue","Du Bosquiel","","59910","Bondues","Salome","Bleme","contact@fipo.com","0320760145","10",1));
-		clientData.add(new Client("Les Meubles Niolet",377942537,"Sud-Ouest",200004,11,"Allee ","des Coustous","","65200","Bagneres-de-Bigorre","Julien","Niolet","julien.niolet@gmail.com","0562950281","30",3));
-		clientData.add(new Client("Crea Mobilier",443393202,"Ouest",200005,74,"rue","d'Audierne","","29710","Plozevet","Bertrand","Claquin","Creamobilier@hotmail.fr","0298914951","20",7));
+		clientData.add(new Client(2,"Bricot Depot",451647903,5,200001,30,"Rue","De La Tourelle","CS 60501 Longpont Sur Orge","91315","Montlhery Cedex","Laporte","Marc","laporte.marc@Bricotdepot.fr","0625489712","50",12));
+		clientData.add(new Client(2,"Meubles Meyer",301273751,4,200002,70,"Rue","Du General Leclerc","","67270","Schwindratzheim","Lucie","Schaeffer","commercial@meyer.fr","0388919992","40",4));
+		clientData.add(new Client(2,"Demeure de Famille",434856381,1,200003,39,"Rue","Du Bosquiel","","59910","Bondues","Salome","Bleme","contact@fipo.com","0320760145","10",1));
+		clientData.add(new Client(2,"Les Meubles Niolet",377942537,3,200004,11,"Allee ","des Coustous","","65200","Bagneres-de-Bigorre","Julien","Niolet","julien.niolet@gmail.com","0562950281","30",3));
+		clientData.add(new Client(2,"Crea Mobilier",443393202,2,200005,74,"rue","d'Audierne","","29710","Plozevet","Bertrand","Claquin","Creamobilier@hotmail.fr","0298914951","20",7));
 
 	} // end MainApp
 	
@@ -134,7 +128,7 @@ public class MainApp extends Application {
 	public static ObservableList<Representant> getVrp(){
 		return vrpData;}
 	
-	public static ObservableList<Client>getClientData(){
+	public ObservableList<Client>getClientData(){
 		return clientData;}
 	
 	public ObservableList<RegionBox> getRegionBoxData(){
@@ -233,10 +227,10 @@ public class MainApp extends Application {
 //////////////////////////// AFFICHAGE DE LA FENETRE DE MISE A JOUR \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
 	/**
-	 * Ouverture de la fenetre de Mise Ã  jour des donnÃ©es sociÃ©tÃ©.
+	 * Ouverture de la fenetre de Mise à jour des données société.
 	 * 
 	 * @param handleOk
-	 * @return Sauvegarde des donnÃ©es modifiÃ©es.
+	 * @return Sauvegarde des données modifiées.
 	 */
 
 			/////// PROSPECT \\\\\\\
@@ -249,7 +243,7 @@ public class MainApp extends Application {
 	            AnchorPane ProspectFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
-	            dialogStage.setTitle("Mise Ã  Jour");
+	            dialogStage.setTitle("Mise à Jour");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(primaryStage);
 	            Scene scene = new Scene(ProspectFrame);
@@ -279,13 +273,13 @@ public class MainApp extends Application {
 	            AnchorPane ClientFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
-	            dialogStage.setTitle("Mise Ã  Jour");
+	            dialogStage.setTitle("Mise à Jour");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(primaryStage);
 	            Scene scene = new Scene(ClientFrame);
 	            dialogStage.setScene(scene);
 
-	            EditDialogController controller = loader.getController();
+	            EditDialogClientContoller controller = loader.getController();
 	            controller.setMainApp(this);
 	            controller.setDialogStage(dialogStage);
 	            controller.setSocieteClient(client);
@@ -309,7 +303,7 @@ public class MainApp extends Application {
 	            AnchorPane ClientFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
-	            dialogStage.setTitle("Mise Ã  Jour");
+	            dialogStage.setTitle("Mise à Jour");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(primaryStage);
 	            Scene scene = new Scene(ClientFrame);
@@ -354,13 +348,13 @@ public class MainApp extends Application {
 	 //////////////////////////// LECTURE ET ECRITURE DES DONNEES SOCIETE \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	 
 	 /**
-	  * Telecharge les donnÃ©es sociÃ©tÃ©s du fichier source. Remplace ces donnÃ©es
-	  * suite Ã  la sauvegarde
+	  * Telecharge les données sociétés du fichier source. Remplace ces données
+	  * suite à la sauvegarde
 	  * 
 	  * @param file
 	  */
 	
-	 			/////////////////// Telechargement des donnÃ©es  \\\\\\\\\\\\\\\\\\\
+	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
 	public void loadSocieteDataFromFile(File file){
 		 try{
 			 JAXBContext context = JAXBContext.newInstance(ProspectListWrapper.class);
@@ -382,13 +376,13 @@ public class MainApp extends Application {
 			 }catch (Exception e){
 				  Alert alert = new Alert(AlertType.ERROR);
 			        alert.setTitle("Erreur");
-			        alert.setHeaderText("Impossible de charger les donnÃ©es");
-			        alert.setContentText("Impossible de chargÃ© les donnÃ©es depuis le fichier : \n" + file.getPath());
+			        alert.setHeaderText("Impossible de charger les données");
+			        alert.setContentText("Impossible de chargé les données depuis le fichier : \n" + file.getPath());
 
 			        alert.showAndWait();}
 			 }
 		 
-	 			/////////////////// Telechargement des donnÃ©es  \\\\\\\\\\\\\\\\\\\
+	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
 	 
 	 public void SaveSocieteDataToFile(File file){
 		 try{
@@ -404,8 +398,8 @@ public class MainApp extends Application {
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
 		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les donnÃ©es");
-		        alert.setContentText("Impossible de sauvegarder les donnÃ©es depuis le fichier :\n" + file.getPath());
+		        alert.setHeaderText("Impossible de sauvegarder les données");
+		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
 
 		        alert.showAndWait();}
 		 
@@ -422,8 +416,8 @@ public class MainApp extends Application {
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
 		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les donnÃ©es");
-		        alert.setContentText("Impossible de sauvegarder les donnÃ©es depuis le fichier :\n" + file.getPath());
+		        alert.setHeaderText("Impossible de sauvegarder les données");
+		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
 
 		        alert.showAndWait();}
 		 
@@ -440,8 +434,8 @@ public class MainApp extends Application {
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
 		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les donnÃ©es");
-		        alert.setContentText("Impossible de sauvegarder les donnÃ©es depuis le fichier :\n" + file.getPath());
+		        alert.setHeaderText("Impossible de sauvegarder les données");
+		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
 
 		        alert.showAndWait();}
 		 
