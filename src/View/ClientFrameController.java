@@ -1,38 +1,27 @@
 package View;
 
-import org.omg.Messaging.SyncScopeHelper;
-
-/**
- * Classe de controle de la fenetre Prospect
- * 
- * @author Pauline G.
- */
-
 import Controleur.MainApp;
 import Model.Client;
 import Model.Prospect;
-import Model.Representant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 
-
-public class ProspectFrameContoller {
+public class ClientFrameController {
 	
-
 	@FXML
-	private TableView<Prospect> prospectTable;
+	private TableView<Client> ClientTable;
 	@FXML
-	private TableColumn<Prospect, String>raisonSocialeColumn;
+	private TableColumn<Client, String>raisonSocialeColumn;
 	@FXML
-	private TableColumn<Prospect, Integer>sirenColumn;
+	private TableColumn<Client, Integer>sirenColumn;
 	@FXML
-	private TableColumn<Prospect, String>regionColumn;
+	private TableColumn<Client, String>regionColumn;
 	@FXML
-	private TableColumn<Prospect, String>VrpColumn;
+	private TableColumn<Client, String>VrpColumn;
 
 
 	
@@ -83,7 +72,8 @@ public class ProspectFrameContoller {
 
 
 
-	public ProspectFrameContoller(){}
+
+	public ClientFrameController(){}
 	
 	@FXML
 	private void initialize(){
@@ -92,9 +82,9 @@ public class ProspectFrameContoller {
 	regionColumn.setCellValueFactory(cellData->cellData.getValue().regionProperty());
 	VrpColumn.setCellValueFactory(cellData->cellData.getValue().numVrpProperty());
 	
-	showProspectDetails(null);
+	showClientDetails(null);
 
-	prospectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProspectDetails(newValue));
+	ClientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showClientDetails(newValue));
 	
 	}// end initialize
 	
@@ -102,42 +92,42 @@ public class ProspectFrameContoller {
 	
 	public void setMainApp(MainApp mainApp){
 		this.mainApp = mainApp;
-	prospectTable.setItems(mainApp.getProspectData());}
+
+		ClientTable.setItems(MainApp.getClientData());}
 
 
-	private void showProspectDetails(Prospect prospect){
+	
+	
+	private void showClientDetails(Client client){
 		int i;
 		int ir;
-
-		if(prospect !=null){
-			raisonSociale.setText(prospect.getRaisonSociale());
-			siren.setText(Integer.toString(prospect.getSiren()));
-			idCompany.setText(Integer.toString(prospect.getIdCompany()));
-			numVoie.setText(Integer.toString(prospect.getNumVoie()));
-			typeVoie.setText(prospect.getTypeVoie());
-			voie.setText(prospect.getVoie());
-			complement.setText(prospect.getComplement());
-			codePostal.setText(prospect.getCodePostal());
-			ville.setText(prospect.getVille());
-			region.setText(prospect.getRegion());
-			nom.setText(prospect.getNom());
-			prenom.setText(prospect.getPrenom());
-			mail.setText(prospect.getMail());
-			tel.setText(prospect.getTel());
-			numVrp.setText(prospect.getRepresentant().getNumVrp());
-			nomVrp.setText(prospect.getRepresentant().getNomVrp());
-			prenomVrp.setText(prospect.getRepresentant().getPrenomVrp());
-			regionVrp.setText(prospect.getRepresentant().getregionVrp());
-
+		if(client !=null){
+			raisonSociale.setText(client.getRaisonSociale());
+			siren.setText(Integer.toString(client.getSiren()));
+			idCompany.setText(Integer.toString(client.getIdCompany()));
+			numVoie.setText(Integer.toString(client.getNumVoie()));
+			typeVoie.setText(client.getTypeVoie());
+			voie.setText(client.getVoie());
+			complement.setText(client.getComplement());
+			codePostal.setText(client.getCodePostal());
+			ville.setText(client.getVille());
+			region.setText(client.getRegion());
+			nom.setText(client.getNom());
+			prenom.setText(client.getPrenom());
+			mail.setText(client.getMail());
+			tel.setText(client.getTel());
+			numVrp.setText(client.getRepresentant().getNumVrp());
+			nomVrp.setText(client.getRepresentant().getNomVrp());
+			prenomVrp.setText(client.getRepresentant().getPrenomVrp());
+			regionVrp.setText(client.getRepresentant().getregionVrp());
+		
 			
-			i=prospect.getIndexTypeBox();
+			i=client.getIndexTypeBox();
 			type.setText(Integer.toString(i)+" - "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
-			
-			ir=prospect.getIndexRegionBox();
-			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());
 
-			nbCommande.setText(Integer.toString(prospect.getNbCommande()));
-			
+			ir=client.getIndexTypeBox();
+			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());
+			nbCommande.setText(Integer.toString(client.getNbCommande()));
 		}else{
 			type.setText("");
 			raisonSociale.setText("");
@@ -153,35 +143,35 @@ public class ProspectFrameContoller {
 			nom.setText("");
 			prenom.setText("");
 			mail.setText("");
-			numVrp.setText(null);
-			nomVrp.setText(null);
-			prenomVrp.setText(null);
-			regionVrp.setText(null);}}
+			numVrp.setText("");
+			nomVrp.setText("");
+			prenomVrp.setText("");
+			regionVrp.setText("");}}
 
 			
 	
 	
-	//********************** Nouveau Prospect 	**********************//
+	//********************** Nouveau Client 	**********************//
 	
 	@FXML
-	void handleNewProspect(){
+	void handleNewClient(){
 		System.out.println("Test Nouveau Client");
-		Prospect tempSociete = new Prospect();
-		boolean okClicked = mainApp.showEditDialogProspect(tempSociete);
+		Client tempSociete = new Client();
+		boolean okClicked = mainApp.showEditDialogClient(tempSociete);
 		if (okClicked){
-			mainApp.getProspectData().add(tempSociete);
+			MainApp.getClientData().add(tempSociete);
 		}
 	}
 	
 	//********************** Editer Prospect **********************//
 	
 	@FXML
-	void handleEditProspect(){
-		Prospect selectProspect = prospectTable.getSelectionModel().getSelectedItem();
-		if(selectProspect != null){
-			boolean okClicked = mainApp.showEditDialogProspect(selectProspect);
+	void handleEditClient(){
+		Client selectClient = ClientTable.getSelectionModel().getSelectedItem();
+		if(selectClient != null){
+			boolean okClicked = mainApp.showEditDialogClient(selectClient);
 			if(okClicked){
-				showProspectDetails(selectProspect);		
+				showClientDetails(selectClient);		
 				}
 		}
 		else
@@ -196,13 +186,13 @@ public class ProspectFrameContoller {
 		}
 	}
 		
-	//********************** Supprimer Prospect 	**********************//
+	//********************** Supprimer Client 	**********************//
 	
 	@FXML
-	void handleDeleteProsepect() {
-		    int selectedIndex = prospectTable.getSelectionModel().getSelectedIndex();
+	void handleDeleteClient() {
+		    int selectedIndex = ClientTable.getSelectionModel().getSelectedIndex();
 		    if (selectedIndex >= 0) {
-		        prospectTable.getItems().remove(selectedIndex);
+		    	ClientTable.getItems().remove(selectedIndex);
 		    } else {
 		        // Nothing selected.
 		        Alert alert = new Alert(AlertType.WARNING);
@@ -220,3 +210,4 @@ public class ProspectFrameContoller {
 	
 	
 }//end prospectFrameController
+

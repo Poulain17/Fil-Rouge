@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BaseLogicielController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BaseLogicielController">
    <center>
       <AnchorPane prefHeight="831.0" prefWidth="800.0" styleClass="background2" stylesheets="@../../bin/View/ThemeToutBois.css" BorderPane.alignment="CENTER" />
    </center>
@@ -17,9 +21,9 @@
                   <Image url="@../../bin/View/Image/ImageLogin.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="Client" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="80.0" />
+            <Button mnemonicParsing="false" onAction="#showClientFrame" text="Client" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="80.0" />
             <Button mnemonicParsing="false" onAction="#HandleshowProspectFrame" text="Prospect" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="163.0" />
-            <Button mnemonicParsing="false" text="Representant" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="246.0" />
+            <Button mnemonicParsing="false" onAction="#showRepresentantFrame" text="Representant" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="246.0" />
          </children>
       </AnchorPane>
    </left>

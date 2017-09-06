@@ -113,7 +113,7 @@
          </children>
       </GridPane>
       <Button layoutX="334.0" layoutY="632.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="33.0" prefWidth="134.0" text="Annuler" AnchorPane.rightAnchor="33.0" />
-      <Button layoutX="183.0" layoutY="632.0" mnemonicParsing="false" onAction="#handleOkProspect" prefHeight="33.0" prefWidth="134.0" text="Ok" />
+      <Button layoutX="183.0" layoutY="632.0" mnemonicParsing="false" onAction="#handleOkClient" prefHeight="33.0" prefWidth="134.0" text="Ok" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="-66.0" layoutY="-49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
          <image>
             <Image url="@../../bin/View/Image/Paramtre.gif" />

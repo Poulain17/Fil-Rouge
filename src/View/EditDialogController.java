@@ -4,6 +4,7 @@ package View;
 import java.util.regex.Pattern;
 
 import Controleur.MainApp;
+import Model.Client;
 
 /**
  * Classe de mise a jour des données
@@ -35,7 +36,7 @@ public class EditDialogController {
 	@FXML
 	private TextField  numVoie;
 	@FXML
-	private ComboBox typeVoieBox;
+	private TextField typeVoie;
 	@FXML
 	private TextField  voie;
 	@FXML
@@ -55,11 +56,12 @@ public class EditDialogController {
 	@FXML
 	private TextField  tel;
 	@FXML
-	private ComboBox numVrp;
+	private TextField numVrp;
 
 	
 	private Stage dialogStage;
 	private Prospect prospect;
+	private Client client;
 	private boolean okClicked = false;
 	private MainApp mainApp;
 
@@ -75,14 +77,18 @@ public class EditDialogController {
 	    }
 	    
 /////////////////////////////// Afficher donnée dans MAJ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-	    public void setSociete(Prospect prospect) {
+	    
+	    		///// Prospect \\\\\
+	    
+	    public void setSocieteProspect(Prospect prospect) {
 	    	int i;
+	    	int ir;
 	        this.prospect = prospect;
     
 			raisonSociale.setText(prospect.getRaisonSociale());	
 			siren.setText(Integer.toString(prospect.getSiren()));
 			numVoie.setText(Integer.toString(prospect.getNumVoie()));
-			typeVoieBox.setPromptText(prospect.getTypeVoie());
+			typeVoie.setText(prospect.getTypeVoie());
 			voie.setText(prospect.getVoie());
 			complement.setText(prospect.getComplement());
 			codePostal.setText(prospect.getCodePostal());
@@ -93,14 +99,15 @@ public class EditDialogController {
 	        prenom.setText(prospect.getPrenom());
 	        mail.setText(prospect.getMail());
 	        tel.setText(prospect.getTel());
+	        numVrp.setText(prospect.getNumVrp());
 			
-///////////////////////////////Retirer les 0 present dans les TextField MAJ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	        /////Retirer les 0 present dans les TextField MAJ \\\\\
 			if(prospect.getRaisonSociale()!=null){		
 			}else{
 				siren.setText(null);
 				numVoie.setText(null);}
 													
-/////////////////////////////// Declaration ComboBox \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////// Declaration ComboBox \\\\\\\\\\\\\\\\\\\\
 			
 			////////// TypeBox \\\\\\\\\\
 			if(prospect == null){
@@ -109,29 +116,87 @@ public class EditDialogController {
 			}else{
 				typeBox.setItems(mainApp.getTypeBoxData());
 				i = prospect.getIndexTypeBox();
-					typeBox.getSelectionModel().select(i-1);}}
-	    
-	    	////////// TypeVoieBox \\\\\\\\\\
+					typeBox.getSelectionModel().select(i-1);}
 	    
 	    	////////// RegionBox \\\\\\\\\\
+			if(prospect == null){
+				regionBox.setItems(mainApp.getRegionBoxData());
+				regionBox.getSelectionModel().select(0);
+			}else{
+				regionBox.setItems(mainApp.getRegionBoxData());
+				ir = prospect.getIndexRegionBox();
+					regionBox.getSelectionModel().select(ir-1);}
 	    
-	    	////////// NumVrpBox \\\\\\\\\\
+	    	
+	    }//end setSocieteProspect
+
+	  /////////////////////////////////// Client \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	    public void setSocieteClient(Client client) {
+	    	int i;
+	    	int ir;
+	        this.client = client;
+    
+			raisonSociale.setText(client.getRaisonSociale());	
+			siren.setText(Integer.toString(client.getSiren()));
+			numVoie.setText(Integer.toString(client.getNumVoie()));
+			typeVoie.setText(client.getTypeVoie());
+			voie.setText(client.getVoie());
+			complement.setText(client.getComplement());
+			codePostal.setText(client.getCodePostal());
+			ville.setText(client.getVille());
+			regionBox.setPromptText(client.getRegion());
+			numVrp.setPromptText(client.getNumVrp());
+			nom.setText(client.getNom());
+	        prenom.setText(client.getPrenom());
+	        mail.setText(client.getMail());
+	        tel.setText(client.getTel());
+	        numVrp.setText(client.getNumVrp());
+	        
+	        /////Retirer les 0 present dans les TextField MAJ \\\\\
+			if(client.getRaisonSociale()!=null){		
+			}else{
+				siren.setText(null);
+				numVoie.setText(null);}
+													
+			///// Declaration ComboBox \\\\\
+			
+			////////// TypeBox \\\\\\\\\\
+			if(client == null){
+				typeBox.setItems(mainApp.getTypeBoxData());
+				typeBox.getSelectionModel().select(0);
+			}else{
+				typeBox.setItems(mainApp.getTypeBoxData());
+				i = client.getIndexTypeBox();
+					typeBox.getSelectionModel().select(i-1);}
+	    
+			//////////RegionBox \\\\\\\\\\
+			if(client == null){
+				regionBox.setItems(mainApp.getRegionBoxData());
+				regionBox.getSelectionModel().select(0);
+			}else{
+				regionBox.setItems(mainApp.getRegionBoxData());
+				ir = client.getIndexTypeBox();
+					regionBox.getSelectionModel().select(ir-1);}
+	   
+	    
+	    
+	    }//end SetSocieteClient
 
 	    public boolean isOkClicked() {
 	        return okClicked;}
 
 		@FXML
-	    private void handleOk() {
+	    private void handleOkProspect() {
 			String s;
 			String t[];
+			String a;
+			String b[];
 	        if (isInputValid()) {
-	        	
-	        	
 	        	
 	        	prospect.setRaisonSociale(raisonSociale.getText());
 	        	prospect.setSiren(Integer.parseInt(siren.getText()));        
 	        	prospect.setNumVoie(Integer.parseInt(numVoie.getText()));
-	        	prospect.setTypeVoie(typeVoieBox.getPromptText());
+	        	prospect.setTypeVoie(typeVoie.getText());
 	        	prospect.setVoie(voie.getText());
 	        	prospect.setComplement(complement.getText());
 	        	prospect.setCodePostal(codePostal.getText());
@@ -141,15 +206,68 @@ public class EditDialogController {
 	            prospect.setPrenom(prenom.getText());
 	            prospect.setMail(mail.getText());
 	            prospect.setTel(tel.getText());
+	            prospect.setNumVrp(numVrp.getText());
+	            
+	  /////////////////////////////// ComboBox \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
+	            
+		          
+			  s = typeBox.getValue().toString();
+			  System.out.println("s = "+s);
+			  t=s.split("");
+			  System.out.println("t = "+t[0]);
+			  prospect.setIndexTypeBox(Integer.parseInt(t[0]));
+			  
+			  a = regionBox.getValue().toString();
+			  System.out.println("s = "+a);
+			  b=a.split("");
+			  System.out.println("t = "+b[0]);
+			  prospect.setIndexTypeBox(Integer.parseInt(b[0]));
+			   
+			  
+			  okClicked = true;
+			  dialogStage.close();} 
+}  //End HandleOk
+	            
+	       @FXML
+	     private void handleOkClient() {
+	    			String s;
+	    			String t[];
+	    			String a;
+	    			String b[];
+	    	        if (isInputValid()) {
+	    	        	
+	    	        	
+	    	        	
+	    	        	client.setRaisonSociale(raisonSociale.getText());
+	    	        	client.setSiren(Integer.parseInt(siren.getText()));        
+	    	        	client.setNumVoie(Integer.parseInt(numVoie.getText()));
+	    	        	client.setTypeVoie(typeVoie.getText());
+	    	        	client.setVoie(voie.getText());
+	    	        	client.setComplement(complement.getText());
+	    	        	client.setCodePostal(codePostal.getText());
+	    	        	client.setVille(ville.getText());
+	    	        	client.setRegion(regionBox.getPromptText());
+	    	        	client.setNom(nom.getText());
+	    	        	client.setPrenom(prenom.getText());
+	    	        	client.setMail(mail.getText());
+	    	        	client.setTel(tel.getText());
+	    	        	client.setNumVrp(numVrp.getText());
+	    	        	
+	    	        	
 
 /////////////////////////////// ComboBox \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
-	            
-	            
+    
 	            s = typeBox.getValue().toString();
 	            System.out.println("s = "+s);
 		        t=s.split("");
 		        System.out.println("t = "+t[0]);
-		        prospect.setIndexTypeBox(Integer.parseInt(t[0]));
+		        client.setIndexTypeBox(Integer.parseInt(t[0]));
+		        
+		        a = regionBox.getValue().toString();
+				  System.out.println("s = "+a);
+				  b=a.split("");
+				  System.out.println("t = "+b[0]);
+				  prospect.setIndexTypeBox(Integer.parseInt(b[0]));
 		        
 	            okClicked = true;
 	            dialogStage.close();

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" styleClass="background2" stylesheets="@../../bin/View/ThemeToutBois.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProspectFrameContoller">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" styleClass="background2" stylesheets="@../../bin/View/ThemeToutBois.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ClientFrameController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" styleClass="background1" AnchorPane.bottomAnchor="540.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0">
          <children>
@@ -65,7 +65,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="455.0" layoutY="55.0" prefHeight="22.0" prefWidth="189.0" text="Numéro de prospect" textAlignment="RIGHT" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="55.0">
+            <Label layoutX="455.0" layoutY="55.0" prefHeight="22.0" prefWidth="189.0" text="Numéro de Client" textAlignment="RIGHT" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="55.0">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -77,8 +77,8 @@
                </font>
             </Label>
             <Label fx:id="region" layoutX="10.0" layoutY="200.0" prefHeight="17.0" prefWidth="148.0" text="regionLabel" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
-            <Button alignment="TOP_CENTER" layoutX="463.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleEditProspect" prefHeight="33.0" prefWidth="134.0" text="Mettre à jour" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" />
-            <Button alignment="TOP_CENTER" layoutX="609.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleDeleteProsepect" prefHeight="33.0" prefWidth="134.0" text="Supprimer" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <Button alignment="TOP_CENTER" layoutX="463.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="33.0" prefWidth="134.0" text="Mettre à jour" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" />
+            <Button alignment="TOP_CENTER" layoutX="609.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleDeleteClient" prefHeight="33.0" prefWidth="134.0" text="Supprimer" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
             <Label layoutX="413.0" layoutY="116.0" prefHeight="22.0" prefWidth="148.0" text="Type" textAlignment="RIGHT" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="95.0">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
@@ -106,7 +106,7 @@
                   <Image url="@Image/IconeList.png" />
                </image>
             </ImageView>
-            <Label layoutX="25.0" layoutY="16.0" text="Liste Prospect" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="25.0" layoutY="16.0" text="Liste Client" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="Calibri Bold" size="36.0" />
                </font>
@@ -115,7 +115,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="749.0">
                      <children>
-                        <TableView fx:id="prospectTable" layoutX="57.0" layoutY="-11.0" prefHeight="180.0" prefWidth="749.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="ClientTable" layoutX="57.0" layoutY="-11.0" prefHeight="180.0" prefWidth="749.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="raisonSocialeColumn" prefWidth="200.0" text="Raison Sociale" />
                               <TableColumn fx:id="sirenColumn" prefWidth="75.0" text="Siren" />
@@ -130,7 +130,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Button alignment="TOP_CENTER" layoutX="621.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleNewProspect" prefHeight="33.0" prefWidth="134.0" text="Nouveau" textAlignment="CENTER" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0" />
+            <Button alignment="TOP_CENTER" layoutX="621.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleNewClient" prefHeight="33.0" prefWidth="134.0" text="Nouveau" textAlignment="CENTER" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="253.0" layoutY="300.0" prefHeight="200.0" prefWidth="200.0" styleClass="background1" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="410.0" AnchorPane.topAnchor="280.0">
@@ -169,7 +169,7 @@
                </font>
             </Label>
             <Label fx:id="tel" layoutX="-22.0" layoutY="194.0" prefHeight="17.0" prefWidth="134.0" text="telLabel" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="195.0" />
-            <Button alignment="TOP_CENTER" layoutX="240.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleEditProspect" prefHeight="33.0" prefWidth="134.0" text="Mettre à jour" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <Button alignment="TOP_CENTER" layoutX="240.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="33.0" prefWidth="134.0" text="Mettre à jour" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="vrpPane" layoutX="263.0" layoutY="310.0" prefHeight="200.0" prefWidth="200.0" styleClass="background1" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0">
