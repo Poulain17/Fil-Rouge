@@ -23,10 +23,14 @@ public class BaseLogicielController {
 		mainApp.showProspectFrame();}
 	
 	@FXML
-	public void showRepresentantFrame(){}
+	public void showRepresentantFrame(){
+		mainApp.showVrpFrame();
+	}
 	
 	@FXML
-	public void showClientFrame(){}
+	public void showClientFrame(){
+		mainApp.showClientFrame();
+	}
 	
 	@FXML
 	private void handleNewProspect(){
