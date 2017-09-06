@@ -54,6 +54,7 @@ public class MainApp extends Application {
 	private ObservableList<Client> clientData = FXCollections.observableArrayList();
 	private ObservableList<RegionBox> regionBoxData = FXCollections.observableArrayList();
 
+
 	
 
 	
@@ -66,12 +67,12 @@ public class MainApp extends Application {
 		 */
 		
 		
-		vrpData.add(new Representant("10","Harleen","Quinzel","Dupont.Jacques@toutbois.fr","0625489752","Nord",1980,10));
-		vrpData.add(new Representant("20","Bruce","Banner","Deville.J@ulientoutbois.fr","0784934574","Ouest",1490,3));
-		vrpData.add(new Representant("30","Arthur","Accroc","Molinel.Sabine@toutbois.fr","0678963214","Sud-Ouest",1490,3));
-		vrpData.add(new Representant("40","Guigue","Noemie","Guigue.Noemie@toutbois.fr","0681497521","Est",1490,3));
-		vrpData.add(new Representant("50","Peter","Quill","Star.Lord@toutbois.fr","0748956217","Ile-De-France",1600,5));
-		vrpData.add(new Representant("60","James","Kirk","starFleet@toutbois.fr","0625487914","Sud-Est",2680,15));
+		vrpData.add(new Representant("10","Quinzel","Harleen","Quinzel.Harleen@toutbois.fr","0625489752","Nord",1980,10));
+		vrpData.add(new Representant("20","Banner","Bruce","Banner.Bruce@ulientoutbois.fr","0784934574","Ouest",1490,3));
+		vrpData.add(new Representant("30","Accroc","Arthur","Accroc.Arthur@toutbois.fr","0678963214","Sud-Ouest",1490,3));
+		vrpData.add(new Representant("40","Noemie","Guigue","Guigue.Noemie@toutbois.fr","0681497521","Est",1490,3));
+		vrpData.add(new Representant("50","Quill","Peter","Star.Lord@toutbois.fr","0748956217","Ile-De-France",1600,5));
+		vrpData.add(new Representant("60","Kirk","James","starFleet@toutbois.fr","0625487914","Sud-Est",2680,15));
 
 		/**
 		 * Instanciation des donnée ComboBox de le fenetre de MAJ prospect
@@ -322,7 +323,7 @@ public class MainApp extends Application {
 	            return false;} }
 	 
 	 
-	 
+	/* 
 	 //////////////////////////// SAUVEGARDE \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	 
 	 public File getSocieteFilePath(){
@@ -337,10 +338,10 @@ public class MainApp extends Application {
 		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
 		 if(file !=null){
 			 prefs.put("filesPath",file.getPath());
-			 primaryStage.setTitle("AdresseApp - " + file.getName());
+			 primaryStage.setTitle("ToutBois - " + file.getName());
 		 } else {
 			 prefs.remove("filePatch");
-			 primaryStage.setTitle("AdresseApp");}} 
+			 primaryStage.setTitle("ToutBois");}} 
 		 
 	 
 	 
@@ -353,7 +354,7 @@ public class MainApp extends Application {
 	  * 
 	  * @param file
 	  */
-	
+	/*
 	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
 	public void loadSocieteDataFromFile(File file){
 		 try{
@@ -364,11 +365,17 @@ public class MainApp extends Application {
 			 prospectData.clear();
 			 prospectData.addAll(wrapperP.getVrp());
 			 
-			 ClientListWrapper wrapperC = (ClientListWrapper) um.unmarshal(file);
+			 JAXBContext contextC = JAXBContext.newInstance(ClientListWrapper.class);
+			 Unmarshaller umC = contextC.createUnmarshaller();
+			 
+			 ClientListWrapper wrapperC = (ClientListWrapper) umC.unmarshal(file);
 			 clientData.clear();
 			 clientData.addAll(wrapperC.getClient());
 			 
-			 RepresentantListWrapper wrapperR = (RepresentantListWrapper)  um.unmarshal(file);
+			 JAXBContext contextR = JAXBContext.newInstance(RepresentantListWrapper.class);
+			 Unmarshaller umR = contextR.createUnmarshaller();
+			 
+			 RepresentantListWrapper wrapperR = (RepresentantListWrapper)  umR.unmarshal(file);
 			 vrpData.clear();
 			 vrpData.addAll(wrapperR.getlistRepresentant());
 
@@ -440,6 +447,8 @@ public class MainApp extends Application {
 		        alert.showAndWait();}
 		 
 	 } //end SaveSocieteDataFile
+	 */
+	 
 	 
 	 //////////////////////////// AUTRES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	 
