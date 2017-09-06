@@ -49,6 +49,7 @@ public class RepresentantFrameController {
 		numVrpColumn.setCellValueFactory(cellData->cellData.getValue().numVrpProperty());
 		RegionColumn.setCellValueFactory(cellData->cellData.getValue().regionVrpProperty());
 		
+		System.out.println("showVrpDetails(null)");
 		showVrpDetails(null);
 		
 		RepresentantTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showVrpDetails(newValue));

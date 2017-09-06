@@ -44,9 +44,10 @@ public class RepresentantEditDialogueController {
 /////////////////////////////// Afficher donnée dans MAJ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 	    
 	    public void setRepresentant(Representant representant){
+	    	this.representant = representant;
 	    	
 	    	nom.setText(representant.getNomVrp());
-	    	prenom.setText(representant.getNomVrp());
+	    	prenom.setText(representant.getPrenomVrp());
 	    	mail.setText(representant.getMailVrp());
 	    	tel.setText(representant.getTelVrp());
 	    	salaire.setText(Integer.toString(representant.getSalaireVrp()));
@@ -59,9 +60,10 @@ public class RepresentantEditDialogueController {
 	        return okClicked;}
 	    
 	    @FXML
-	    private void handleOk(){
+	    private void handleOkVrp(){
+	    	System.out.println("handeleOk avant");
 	    	if(isInputValid()){
-	    		
+
 	    		representant.setNomVrp(nom.getText());
 	    		representant.setPrenomVrp(prenom.getText());
 	    		representant.setMailVrp(mail.getText());
@@ -70,6 +72,7 @@ public class RepresentantEditDialogueController {
 	    		representant.setSalaireVrp(Integer.parseInt(salaire.getText()));
 	    		representant.setCommVrp(Integer.parseInt(comm.getText()));
 	    		
+		    	System.out.println("handeleOk apres");
 	    		okClicked = true;
 	            dialogStage.close();
 	    		

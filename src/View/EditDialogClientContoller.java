@@ -87,7 +87,6 @@ import javafx.stage.Stage;
 				codePostal.setText(client.getCodePostal());
 				ville.setText(client.getVille());
 				//regionBox.setPromptText(client.getRegion());
-				numVrp.setPromptText(client.getNumVrp());
 				nom.setText(client.getNom());
 		        prenom.setText(client.getPrenom());
 		        mail.setText(client.getMail());
