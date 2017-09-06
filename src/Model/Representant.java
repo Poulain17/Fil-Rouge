@@ -1,131 +1,119 @@
 package Model;
 
+
+import Controleur.MainApp;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
+
 /**
- * Classe Representant
+ * Classe Prospect fille de la Classe Societe
  * 
- * @author Pauline G.
+ * @author Pauline.G
  */
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-public class Representant {
-	
-	
+public class Prospect extends Societe{
 	
 
-	private final StringProperty numVrp;
-	private final StringProperty nomVrp;
-	private final StringProperty prenomVrp;
-	private final StringProperty mailVrp;
-	private final StringProperty telVrp;
-	private final StringProperty regionVrp;
-	int salaireVrp;
-	int commVrp;
-	
-	
-	public Representant(){
-		this(null,null, null, null, null, null);
-	}
+	private final  IntegerProperty indexTypeBox;
+	private final IntegerProperty indexRegionBox;
+	private final IntegerProperty indexNumVrpBox;
 
-	public Representant(String numVrp, String nomVrp, String prebomVrp,
-			String mailVrp, String telVrp, String regionVrp) {
+	private static int numVrpCompteur;
+	private String numVrp;
+	public Prospect selectedProspect;
+	
+public MainApp mainApp;
 
-		this.numVrp = new SimpleStringProperty(numVrp);
-		this.nomVrp = new SimpleStringProperty(nomVrp);
-		this.prenomVrp = new SimpleStringProperty(prebomVrp);
-		this.mailVrp = new SimpleStringProperty(mailVrp);
-		this.telVrp = new SimpleStringProperty(telVrp);
-		this.regionVrp = new SimpleStringProperty(regionVrp);}
-	
-	
-
-	public Representant(StringProperty numVrp,StringProperty nomVrp, StringProperty prenomVrp, StringProperty mailVrp, StringProperty telVrp,
-		int salaireVrp, int commVrp, StringProperty regionVrp) {
-		this.numVrp = numVrp;
-		this.nomVrp = nomVrp;
-		this.prenomVrp = prenomVrp;
-		this.mailVrp = mailVrp;
-		this.telVrp = telVrp;
-		this.salaireVrp = salaireVrp;
-		this.commVrp = commVrp;
-		this.regionVrp = regionVrp;}
-
-	public String getNumVrp() {
-		return numVrp.get();}
-
-	public void setNumVrp(String numVrp) {
-		this.numVrp.set(numVrp);}
-	
-	public StringProperty numVrpProperty(){
-		return numVrp;}
-	
-	
-	public String getNomVrp() {
-		return nomVrp.get();}
-
-	public void setNomVrp(String nomVrp) {
-		this.nomVrp.set(nomVrp);}
-	
-	public StringProperty nomVrpProperty(){
-		return nomVrp;}
-	
-	public String getPrenomVrp() {
-		return prenomVrp.get();}
-
-	public void setPrenomVrp(String prenomVrp) {
-		this.prenomVrp.set(prenomVrp);}
-	
-	public StringProperty prenomVrpProperty(){
-		return prenomVrp;}
-	
-	public String getMailVrp() {
-		return mailVrp.get();}
-
-	public void setMailVrp(String mailVrp) {
-		this.mailVrp.set(mailVrp);}
-	
-	public StringProperty mailVrpProperty(){
-		return mailVrp;}
-	
-	public String getTelVrp() {
-		return telVrp.get();}
-
-	public void setTelVrp(String telVrp) {
-		this.telVrp.set(telVrp);}
-	
-	public StringProperty telVrpProperty(){
-		return telVrp;}
-	
-	public void setSalaireVrp(int salaireVrp) {
-		this.salaireVrp = salaireVrp;}
-
-	public void setCommVrp(int commVrp) {
-		this.commVrp = commVrp;}
-
-	public String getregionVrp() {
-		return regionVrp.get();}
-
-	public void setRegionVrp(String regionVrp) {
-		this.regionVrp.set(regionVrp);}
-	
-	public StringProperty regionVrpProperty(){
-		return regionVrp;}
-
-	
-	public StringProperty representantProperty(){
-			return new SimpleStringProperty(getNomVrp() + " " + getPrenomVrp());}
+private ObjectProperty<Representant> representant;
 
 
-	@Override
-	public String toString() {
-		return  nomVrp + " " + prenomVrp;
+	public Prospect(){
+		this(null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);}
+
+
+	public Prospect(String raisonSociale, Integer siren, String region, Integer idCompany, Integer numVoie,
+			String typeVoie, String voie, String complement, String codePostal, String ville, String nom, String prenom,
+			String mail, String tel, String numVrp, Integer nbCommande) {
+		super(raisonSociale, siren, region, idCompany, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
+				prenom, mail, tel, numVrp, nbCommande);
+		this.indexTypeBox = new SimpleIntegerProperty(01);
+		this.indexRegionBox = new SimpleIntegerProperty(0);
+		this.indexNumVrpBox = new SimpleIntegerProperty(0);
+		this.setNbCommande(0);
+		
+		for(Representant vrp : MainApp.getVrp()){
+			if(numVrp == (vrp.getNumVrp())){
+				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
+		}//end for
+	
+		numVrpCompteur ++;
+		String numCompteur = Integer.toString(numVrpCompteur);
+		numVrp = numCompteur;
+			
+	} //end Constuctor	
+	
+	
+	
+	
+	
+		
+
+	public Integer getIndexTypeBox(){
+		return indexTypeBox.get();
 	}
 	
+	public void setIndexTypeBox(Integer indexTypeBox){
+		this.indexTypeBox.set(indexTypeBox);
+	}
+	
+	public IntegerProperty indexTypeBoxProperty(){
+		return indexTypeBox;
+	}
+	
+	public Integer getIndexNumVrpBox(){
+		return indexNumVrpBox.get();
+	}
+	
+	public void setIndexNumVrpBox(Integer indexNumVrpBox){
+		this.indexNumVrpBox.set(indexNumVrpBox);
+	}
+	
+	public IntegerProperty indexNumVrpBoxProperty(){
+		return indexNumVrpBox;
+	}
+	
+	public Integer getIndexRegionBox(){
+		return indexTypeBox.get();
+	}
+	
+	public void setIndexRegionBox(Integer indexRegionBox){
+		this.indexRegionBox.set(indexRegionBox);
+	}
+	
+	public IntegerProperty indexRegionBoxProperty(){
+		return indexRegionBox;
+	}
+		
+	public int getnumVrpCompteur(){
+		return numVrpCompteur;
+	}
+	
+	public void setnumVrpCompteur(int numVrp){
+		numVrpCompteur = numVrpCompteur;
+	}
 
-
+	public  void setRepresentant(Representant value){
+		representant.set(value);}
+	
+	public Representant getRepresentant(){
+		return representant.get();
+	}
 	
 	
 	
-} //end Representant
+	
+}// end Prospect
