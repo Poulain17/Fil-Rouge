@@ -3,7 +3,7 @@ package Model;
 
 
 /**
- * Classe MÃ¨re Societe
+ * Classe Mère Societe
  * 
  * @author Pauline G.
  */
@@ -25,15 +25,15 @@ public class Societe {
 	private final StringProperty complement;
 	private final StringProperty codePostal;
 	private final StringProperty ville;
-	private final StringProperty region;
+	private final IntegerProperty indexRegion;
 	private final StringProperty nom;
 	private final StringProperty prenom;
 	private final StringProperty mail;
 	private final StringProperty tel;
 	private final StringProperty numVrp;
 	private final IntegerProperty nbCommande;
-	private final IntegerProperty indexTypeBox;
-	private final IntegerProperty indexNumVrpBox;
+	private final IntegerProperty indexType;
+
 
 	public MainApp mainApp;
 	Representant representant;
@@ -66,16 +66,18 @@ public class Societe {
 
 	
 	public Societe(){
-		this(null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);
+		this(0,null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);
 		
 	}
 
-	public Societe(String raisonSociale, Integer siren, String region, Integer idCompany, Integer numVoie, String typeVoie, String voie, 
+	public Societe(Integer indexType, String raisonSociale, Integer siren, Integer indexRegion, Integer idCompany, Integer numVoie, String typeVoie, String voie, 
 			String complement, String codePostal, String ville, String nom, String prenom, String mail, String tel, String numVrp, Integer nbCommande) {
 
+		this.indexType = new SimpleIntegerProperty(indexType);
 		this.raisonSociale = new SimpleStringProperty(raisonSociale);
 		this.siren = new SimpleIntegerProperty(siren);
-		this.region = new SimpleStringProperty(typeBox.toString());
+		//this.region = new SimpleStringProperty(typeBox.toString());
+		this.indexRegion = new SimpleIntegerProperty(indexRegion);
 		this.idCompany = new SimpleIntegerProperty(idCompany);
 		this.numVoie = new SimpleIntegerProperty(numVoie);
 		this.typeVoie = new SimpleStringProperty(typeVoie);
@@ -88,9 +90,7 @@ public class Societe {
 		this.mail = new SimpleStringProperty(mail);
 		this.tel = new SimpleStringProperty(tel);
 		this.numVrp = new SimpleStringProperty(numVrp);
-		this.nbCommande = new SimpleIntegerProperty(nbCommande);
-		this.indexTypeBox = new SimpleIntegerProperty();
-		this.indexNumVrpBox = new SimpleIntegerProperty();}
+		this.nbCommande = new SimpleIntegerProperty(nbCommande);}
 	
 	public void  setMainApp(MainApp mainApp){
 		mainApp = mainApp;
@@ -104,7 +104,15 @@ public class Societe {
 		client = client;
 	}
 
+	public Integer getIndexType() {
+		return indexType.get();}
 	
+	public void setIndexType(Integer indexType){
+		this.indexType.set(indexType);}
+	
+	public IntegerProperty indexTypeProperty(){
+		return indexType;}
+
 	public String getRaisonSociale() {
 		return raisonSociale.get();}
 	
@@ -165,14 +173,14 @@ public class Societe {
 	public void setVille(String ville){
 		this.ville.set(ville);}
 	
-	public String getRegion() {
-		return region.get();}
+	public Integer getIndexRegion() {
+		return indexRegion.get();}
 	
-	public void setRegion(String region){
-		this.region.set(typeBox.toString());}
+	public void setIndexRegion(Integer indexRegion){
+		this.indexRegion.set(indexRegion);}
 	
-	public StringProperty regionProperty(){
-		return region;}
+	public IntegerProperty indexRegionProperty(){
+		return indexRegion;}
 	
 	public String getNom() {
 		return nom.get();}
@@ -227,34 +235,6 @@ public class Societe {
 	
 	public IntegerProperty nbCommandeProperty(){
 		return nbCommande;}
-	
-	public Integer getIndexTypeBox(){
-		return indexTypeBox.get();
-	}
-	
-	public void setIndexTypeBox(Integer indexTypeBox){
-		this.indexTypeBox.set(indexTypeBox);
-	}
-	
-	public IntegerProperty indexTypeBoxProperty(){
-		return indexTypeBox;
-	}
-	
-	public Integer getIndexNumVrpBox(){
-		return indexNumVrpBox.get();
-	}
-	
-	public void setIndexNumVrpBox(Integer indexNumVrpBox){
-		this.indexNumVrpBox.set(indexNumVrpBox);
-	}
-	
-	public IntegerProperty indexNumVrpBoxProperty(){
-		return indexNumVrpBox;
-	}
-	
-	public Integer getIndexRegionBox(){
-		return indexTypeBox.get();
-	}
 	
 
 }// End Class

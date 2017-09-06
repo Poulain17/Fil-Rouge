@@ -12,9 +12,8 @@ public class RegionBox {
 	private final StringProperty regionBox;
 	
 	public RegionBox(){
-		this.indexRegionBox = new SimpleIntegerProperty(1);
-		this.regionBox = new SimpleStringProperty("Prospect");
-	}
+		this.indexRegionBox = new SimpleIntegerProperty();
+		this.regionBox = new SimpleStringProperty();}
 
 	public RegionBox(int indexRegionBox, String regionBox) {
 		this.indexRegionBox = new SimpleIntegerProperty(indexRegionBox);

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
- * Classe qui  Wrap de la TypeBox. Sert a sauvegarder les donnÃ©e
+ * Classe qui  Wrap de la TypeBox. Sert a sauvegarder les donnée
  * en XML
  * @author Pauline G.
  */
