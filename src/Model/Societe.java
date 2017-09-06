@@ -32,9 +32,12 @@ public class Societe {
 	private final StringProperty tel;
 	private final StringProperty numVrp;
 	private final IntegerProperty nbCommande;
+	private final IntegerProperty indexTypeBox;
+	private final IntegerProperty indexNumVrpBox;
 
 	public MainApp mainApp;
 	Representant representant;
+	TypeBox typeBox;
 
 
 
@@ -72,7 +75,7 @@ public class Societe {
 
 		this.raisonSociale = new SimpleStringProperty(raisonSociale);
 		this.siren = new SimpleIntegerProperty(siren);
-		this.region = new SimpleStringProperty(region);
+		this.region = new SimpleStringProperty(typeBox.toString());
 		this.idCompany = new SimpleIntegerProperty(idCompany);
 		this.numVoie = new SimpleIntegerProperty(numVoie);
 		this.typeVoie = new SimpleStringProperty(typeVoie);
@@ -85,7 +88,9 @@ public class Societe {
 		this.mail = new SimpleStringProperty(mail);
 		this.tel = new SimpleStringProperty(tel);
 		this.numVrp = new SimpleStringProperty(numVrp);
-		this.nbCommande = new SimpleIntegerProperty(nbCommande);}
+		this.nbCommande = new SimpleIntegerProperty(nbCommande);
+		this.indexTypeBox = new SimpleIntegerProperty();
+		this.indexNumVrpBox = new SimpleIntegerProperty();}
 	
 	public void  setMainApp(MainApp mainApp){
 		mainApp = mainApp;
@@ -93,6 +98,10 @@ public class Societe {
 	
 	public void setRepresentant (Representant vrp){
 		vrp = vrp;	
+	}
+	
+	public void setClient (Client client){
+		client = client;
 	}
 
 	
@@ -160,7 +169,7 @@ public class Societe {
 		return region.get();}
 	
 	public void setRegion(String region){
-		this.region.set(region);}
+		this.region.set(typeBox.toString());}
 	
 	public StringProperty regionProperty(){
 		return region;}
@@ -218,8 +227,35 @@ public class Societe {
 	
 	public IntegerProperty nbCommandeProperty(){
 		return nbCommande;}
-
+	
+	public Integer getIndexTypeBox(){
+		return indexTypeBox.get();
+	}
+	
+	public void setIndexTypeBox(Integer indexTypeBox){
+		this.indexTypeBox.set(indexTypeBox);
+	}
+	
+	public IntegerProperty indexTypeBoxProperty(){
+		return indexTypeBox;
+	}
+	
+	public Integer getIndexNumVrpBox(){
+		return indexNumVrpBox.get();
+	}
+	
+	public void setIndexNumVrpBox(Integer indexNumVrpBox){
+		this.indexNumVrpBox.set(indexNumVrpBox);
+	}
+	
+	public IntegerProperty indexNumVrpBoxProperty(){
+		return indexNumVrpBox;
+	}
+	
+	public Integer getIndexRegionBox(){
+		return indexTypeBox.get();
+	}
+	
 
 }// End Class
-
 
