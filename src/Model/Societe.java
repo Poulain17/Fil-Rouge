@@ -66,7 +66,7 @@ public class Societe {
 
 	
 	public Societe(){
-		this(0,null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);
+		this(0,null,0,0,0,0,null,null,null,null,null,null,null,null,null,null,0);
 		
 	}
 
