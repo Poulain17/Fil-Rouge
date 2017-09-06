@@ -157,10 +157,10 @@ public class ClientFrameController {
 	@FXML
 	void handleNewClient(){
 		System.out.println("Test Nouveau Client");
-		Client tempSociete = new Client();
-		boolean okClicked = mainApp.showEditDialogClient(tempSociete);
+		Client tempClient = new Client();
+		boolean okClicked = mainApp.showEditDialogClient(tempClient);
 		if (okClicked){
-			mainApp.getClientData().add(tempSociete);
+			mainApp.getClientData().add(tempClient);
 		}
 	}
 	

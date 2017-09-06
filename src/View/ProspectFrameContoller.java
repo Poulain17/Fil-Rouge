@@ -167,10 +167,10 @@ public class ProspectFrameContoller {
 	@FXML
 	void handleNewProspect(){
 		System.out.println("Test Nouveau Client");
-		Prospect tempSociete = new Prospect();
-		boolean okClicked = mainApp.showEditDialogProspect(tempSociete);
+		Prospect tempProspect = new Prospect();
+		boolean okClicked = mainApp.showEditDialogProspect(tempProspect);
 		if (okClicked){
-			mainApp.getProspectData().add(tempSociete);
+			mainApp.getProspectData().add(tempProspect);
 		}
 	}
 	

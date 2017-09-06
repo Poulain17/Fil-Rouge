@@ -229,5 +229,3 @@ public class EditDialogController {
 	        }
 	    }
 	} //Fin classe
-
-
