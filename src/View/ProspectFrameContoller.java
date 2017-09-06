@@ -30,7 +30,7 @@ public class ProspectFrameContoller {
 	@FXML
 	private TableColumn<Prospect, Integer>sirenColumn;
 	@FXML
-	private TableColumn<Prospect, String>regionColumn;
+	private TableColumn<Prospect, Integer>regionColumn;
 	@FXML
 	private TableColumn<Prospect, String>VrpColumn;
 
@@ -89,7 +89,7 @@ public class ProspectFrameContoller {
 	private void initialize(){
 	raisonSocialeColumn.setCellValueFactory(cellData->cellData.getValue().raisonSocialeProperty());
 	sirenColumn.setCellValueFactory(cellData->cellData.getValue().sirenProperty().asObject());
-	regionColumn.setCellValueFactory(cellData->cellData.getValue().regionProperty());
+	regionColumn.setCellValueFactory(cellData->cellData.getValue().indexRegionProperty().asObject());
 	VrpColumn.setCellValueFactory(cellData->cellData.getValue().numVrpProperty());
 	
 	showProspectDetails(null);
@@ -119,7 +119,7 @@ public class ProspectFrameContoller {
 			complement.setText(prospect.getComplement());
 			codePostal.setText(prospect.getCodePostal());
 			ville.setText(prospect.getVille());
-			region.setText(prospect.getRegion());
+			//region.setText(prospect.getRegion());
 			nom.setText(prospect.getNom());
 			prenom.setText(prospect.getPrenom());
 			mail.setText(prospect.getMail());
@@ -130,16 +130,17 @@ public class ProspectFrameContoller {
 			regionVrp.setText(prospect.getRepresentant().getregionVrp());
 
 			
-			i=prospect.getIndexTypeBox();
+			i=prospect.getIndexType();
 			type.setText(Integer.toString(i)+" - "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
 			
-			ir=prospect.getIndexRegionBox();
+			ir=prospect.getIndexRegion();
 			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());
 
 			nbCommande.setText(Integer.toString(prospect.getNbCommande()));
 			
 		}else{
 			type.setText("");
+			region.setText("");
 			raisonSociale.setText("");
 			siren.setText("");
 			idCompany.setText("");
@@ -153,10 +154,10 @@ public class ProspectFrameContoller {
 			nom.setText("");
 			prenom.setText("");
 			mail.setText("");
-			numVrp.setText(null);
-			nomVrp.setText(null);
-			prenomVrp.setText(null);
-			regionVrp.setText(null);}}
+			numVrp.setText("");
+			nomVrp.setText("");
+			prenomVrp.setText("");
+			regionVrp.setText("");}}
 
 			
 	

@@ -19,7 +19,7 @@ public class ClientFrameController {
 	@FXML
 	private TableColumn<Client, Integer>sirenColumn;
 	@FXML
-	private TableColumn<Client, String>regionColumn;
+	private TableColumn<Client, Integer>regionColumn;
 	@FXML
 	private TableColumn<Client, String>VrpColumn;
 
@@ -79,7 +79,7 @@ public class ClientFrameController {
 	private void initialize(){
 	raisonSocialeColumn.setCellValueFactory(cellData->cellData.getValue().raisonSocialeProperty());
 	sirenColumn.setCellValueFactory(cellData->cellData.getValue().sirenProperty().asObject());
-	regionColumn.setCellValueFactory(cellData->cellData.getValue().regionProperty());
+	regionColumn.setCellValueFactory(cellData->cellData.getValue().indexRegionProperty().asObject());
 	VrpColumn.setCellValueFactory(cellData->cellData.getValue().numVrpProperty());
 	
 	showClientDetails(null);
@@ -93,7 +93,7 @@ public class ClientFrameController {
 	public void setMainApp(MainApp mainApp){
 		this.mainApp = mainApp;
 
-		ClientTable.setItems(MainApp.getClientData());}
+		ClientTable.setItems(mainApp.getClientData());}
 
 
 	
@@ -111,7 +111,8 @@ public class ClientFrameController {
 			complement.setText(client.getComplement());
 			codePostal.setText(client.getCodePostal());
 			ville.setText(client.getVille());
-			region.setText(client.getRegion());
+			type.setText(Integer.toString(client.getIndexType()));
+			region.setText(Integer.toString(client.getIndexRegion()));
 			nom.setText(client.getNom());
 			prenom.setText(client.getPrenom());
 			mail.setText(client.getMail());
@@ -122,14 +123,16 @@ public class ClientFrameController {
 			regionVrp.setText(client.getRepresentant().getregionVrp());
 		
 			
-			i=client.getIndexTypeBox();
+			i=client.getIndexType();
 			type.setText(Integer.toString(i)+" - "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
 
-			ir=client.getIndexTypeBox();
+			ir=client.getIndexRegion();
 			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());
+			
 			nbCommande.setText(Integer.toString(client.getNbCommande()));
 		}else{
 			type.setText("");
+			region.setText("");
 			raisonSociale.setText("");
 			siren.setText("");
 			idCompany.setText("");
@@ -139,7 +142,6 @@ public class ClientFrameController {
 			complement.setText("");
 			codePostal.setText("");
 			ville.setText("");
-			region.setText("");
 			nom.setText("");
 			prenom.setText("");
 			mail.setText("");
@@ -147,7 +149,6 @@ public class ClientFrameController {
 			nomVrp.setText("");
 			prenomVrp.setText("");
 			regionVrp.setText("");}}
-
 			
 	
 	
@@ -159,11 +160,11 @@ public class ClientFrameController {
 		Client tempSociete = new Client();
 		boolean okClicked = mainApp.showEditDialogClient(tempSociete);
 		if (okClicked){
-			MainApp.getClientData().add(tempSociete);
+			mainApp.getClientData().add(tempSociete);
 		}
 	}
 	
-	//********************** Editer Prospect **********************//
+	//********************** Editer Client **********************//
 	
 	@FXML
 	void handleEditClient(){
