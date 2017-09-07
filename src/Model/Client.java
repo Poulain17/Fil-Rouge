@@ -3,9 +3,7 @@ package Model;
 
 
 import Controleur.MainApp;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
@@ -28,7 +26,7 @@ private ObjectProperty<Representant> representant;
 
 
 	public Client(){
-		this(0,null,0,null,0,0,null,null,null,null,null,null,null,null,null,null,0);}
+		this(0,null,0,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
 
 
 	public Client(Integer indexType,String raisonSociale, Integer siren, Integer indexRegion, Integer idCompany, Integer numVoie,
