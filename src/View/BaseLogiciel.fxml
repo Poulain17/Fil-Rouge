@@ -22,7 +22,7 @@
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#showClientFrame" text="Client" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="80.0" />
-            <Button mnemonicParsing="false" onAction="#HandleshowProspectFrame" text="Prospect" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="163.0" />
+            <Button mnemonicParsing="false" onAction="#showProspectFrame" text="Prospect" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="163.0" />
             <Button mnemonicParsing="false" onAction="#showRepresentantFrame" text="Representant" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="246.0" />
          </children>
       </AnchorPane>
@@ -32,28 +32,22 @@
         <menus>
             <Menu mnemonicParsing="false" text="Fichier">
               <items>
-                <MenuItem mnemonicParsing="false" text="Sauvegarder" />
-                  <MenuItem mnemonicParsing="false" text="Sauvegarder Sous..." />
-                  <MenuItem mnemonicParsing="false" text="Quitter" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Nouveau">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Client" />
-                  <MenuItem mnemonicParsing="false" text="Prospect" />
-                  <MenuItem mnemonicParsing="false" text="Representant" />
+                  <MenuItem mnemonicParsing="false" onAction="#Ouvrir" text="Ouvrir" />
+                <MenuItem mnemonicParsing="false" onAction="#handleSaveData" text="Sauvegarder" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Sauvegarder Sous..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleQuitter" text="Quitter" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Ouvrir">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Client" />
-                <MenuItem mnemonicParsing="false" text="Prospect" />
-                  <MenuItem mnemonicParsing="false" text="Representant" />
+                <MenuItem mnemonicParsing="false" onAction="#showClientFrame" text="Client" />
+                  <MenuItem mnemonicParsing="false" onAction="#showProspectFrame" text="Prospect" />
+                  <MenuItem mnemonicParsing="false" onAction="#showRepresentantFrame" text="Representant" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#handleAPropos" text="A Propos" />
             </items>
           </Menu>
         </menus>
