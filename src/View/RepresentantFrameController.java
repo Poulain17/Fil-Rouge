@@ -1,7 +1,6 @@
 package View;
 
 import Controleur.MainApp;
-import Model.Prospect;
 import Model.Representant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

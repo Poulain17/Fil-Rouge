@@ -1,7 +1,5 @@
 package View;
 
-import org.omg.Messaging.SyncScopeHelper;
-
 /**
  * Classe de controle de la fenetre Prospect
  * 
@@ -9,9 +7,7 @@ import org.omg.Messaging.SyncScopeHelper;
  */
 
 import Controleur.MainApp;
-import Model.Client;
 import Model.Prospect;
-import Model.Representant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

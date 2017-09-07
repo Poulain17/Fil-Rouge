@@ -86,6 +86,15 @@ public class RepresentantEditDialogueController {
 	    private boolean isInputValid() {
 	        String errorMessage = "";
 
+	        if(nom.getText() == null){
+	        	errorMessage +="Nom : Entrée invalide ! \n";
+	        }else {
+	            // try to parse the postal code into an int.
+	            try {
+	                Integer.parseInt(salaire.getText());
+	            } catch (NumberFormatException e) {
+	                errorMessage +=  "Saisir des données !\n";}}
+	        
 	   
 	        if (salaire.getText() == null || salaire.getText().length() ==0) {
 	            errorMessage += "Salaire : Entrée invalide!\n"; 

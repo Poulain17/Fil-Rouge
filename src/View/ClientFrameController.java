@@ -2,7 +2,6 @@ package View;
 
 import Controleur.MainApp;
 import Model.Client;
-import Model.Prospect;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -82,6 +81,7 @@ public class ClientFrameController {
 	regionColumn.setCellValueFactory(cellData->cellData.getValue().indexRegionProperty().asObject());
 	VrpColumn.setCellValueFactory(cellData->cellData.getValue().numVrpProperty());
 	
+	
 	showClientDetails(null);
 
 	ClientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showClientDetails(newValue));
@@ -155,6 +155,7 @@ public class ClientFrameController {
 	//********************** Nouveau Client 	**********************//
 	
 	@FXML
+
 	void handleNewClient(){
 		System.out.println("Test Nouveau Client");
 		Client tempClient = new Client();

@@ -1,22 +1,14 @@
 package View;
 
-
-import java.util.regex.Pattern;
-
-import Controleur.MainApp;
-import Model.Client;
-
 /**
  * Classe de mise a jour des données
  * 
  * @author Pauline.G
  */
 
+
+import Controleur.MainApp;
 import Model.Prospect;
-import Model.Societe;
-import Model.TypeBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
