@@ -15,14 +15,11 @@ import java.util.prefs.Preferences;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-
 import Model.Client;
-import Model.ClientListWrapper;
+import Model.MetierListWrapper;
 import Model.Prospect;
-import Model.ProspectListWrapper;
 import Model.RegionBox;
 import Model.Representant;
-import Model.RepresentantListWrapper;
 import Model.TypeBox;
 import View.BaseLogicielController;
 import View.ClientFrameController;
@@ -120,6 +117,9 @@ public class MainApp extends Application {
 	public ObservableList<Prospect> getProspectData(){
 		return prospectData;}
 	
+	public void setProspectData(ObservableList<Prospect>prospectData){
+		this.prospectData = prospectData;}
+	
 	public ObservableList<TypeBox> getTypeBoxData(){
 		return typeBoxData;}
 	
@@ -128,6 +128,12 @@ public class MainApp extends Application {
 	
 	public static ObservableList<Representant> getVrp(){
 		return vrpData;}
+	
+	public void setVrp(ObservableList<Representant> vrpData){
+		MainApp.vrpData = vrpData;
+	}
+	
+	
 	
 	public ObservableList<Client>getClientData(){
 		return clientData;}
@@ -173,7 +179,12 @@ public class MainApp extends Application {
 		}
 		catch(IOException e){
 			e.printStackTrace();}
-		}//end initLayout
+		
+
+	/*File file = getMetierFilePath();
+	if(file !=null){
+		loadMetierDataFromFile(file);}*/
+	}
 
 ////////////////////////////AFFICHAGE DES FENETRES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -240,7 +251,7 @@ public class MainApp extends Application {
 	        try {
 
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("/view/EditDialog.fxml"));
+	            loader.setLocation(MainApp.class.getResource("/View/EditDialog.fxml"));
 	            AnchorPane ProspectFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
@@ -270,7 +281,7 @@ public class MainApp extends Application {
 	        try {
 
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("/view/EditDialogClient.fxml"));
+	            loader.setLocation(MainApp.class.getResource("/View/EditDialogClient.fxml"));
 	            AnchorPane ClientFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
@@ -297,10 +308,12 @@ public class MainApp extends Application {
 	 	/////// REPRESENTANT \\\\\\\
 	 
 	 public boolean showEditDialogVrp(Representant representant) {
+
+		 
 	        try {
 
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("/view/RepresentantEditDialog.fxml"));
+	            loader.setLocation(MainApp.class.getResource("/View/RepresentantEditDialog.fxml"));
 	            AnchorPane ClientFrame = (AnchorPane) loader.load();
 
 	            Stage dialogStage = new Stage();
@@ -320,28 +333,94 @@ public class MainApp extends Application {
 	            return controllerVrp.isOkClicked();
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	            return false;} }
+	            return false;} 
+	  
+	 }
 	 
 	 
-	/* 
+	
 	 //////////////////////////// SAUVEGARDE \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	 
-	 public File getSocieteFilePath(){
+	 		
+	 		/////////////////////// GENERAL \\\\\\\\\\\\\\\\\\\\\\\
+	 
+	 public File getMetierFilePath(){
+		 
+		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+			String filePath = prefs.get("filePath", null);
+
+			if (filePath != null) {
+				return new File(filePath);
+			}else{
+				return null;}}
+	 
+		 
+	 public void setMetierFilePath(File file){
+		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+			if (file != null) {
+				prefs.put("filePath", file.getPath());
+				primaryStage.setTitle("ToutBois");
+			} else {
+				prefs.remove("filePath");
+				primaryStage.setTitle("ToutBois");}}
+
+	 		/////////////////////// CLIENT \\\\\\\\\\\\\\\\\\\\\\\
+	 /*public File getClientFilePath(){
+		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+		 String filePath = prefs.get("FilePath", null);
+		 if (filePath !=null){
+			 return new File(filePath);
+		 }else{
+			 return null;}}
+	 
+	 public void setClientFilePath(File fileC){
+		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+		 if(fileC !=null){
+			 prefs.put("filesPath",fileC.getPath());
+			 primaryStage.setTitle("ToutBois - " + fileC.getName());
+		 } else {
+			 prefs.remove("filePatch");
+			 primaryStage.setTitle("ToutBois Client");}} */
+	 
+	 
+	 		/////////////////////// PROSPECT \\\\\\\\\\\\\\\\\\\\\\\
+	 
+	/* public File getProspectFilePath(){
+		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+		 String filePath = prefs.get("FilePath", null);
+		 if (filePath !=null){
+			 return new File(filePath);
+		 }else{
+			 return null;}}
+	 
+	 public void setProspectFilePath(File fileP){
+		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+		 if(fileP !=null){
+			 prefs.put("filesPath",fileP.getPath());
+			 primaryStage.setTitle("ToutBois - " + fileP.getName());
+		 } else {
+			 prefs.remove("filePatch");
+			 primaryStage.setTitle("ToutBois Prospect");}}*/
+	 
+	 
+	 		/////////////////////// REPRESENTANT \\\\\\\\\\\\\\\\\\\\\\\
+	 
+	/* public File getRepresentantFilePath(){
 		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
 		 String filePath = prefs.get("FilePath", null);
 		 if (filePath !=null){
 			 return new File(filePath);
 		 }else{
 			 return null;} }
-	 
-	 public void setSocieteFilePath(File file){
+
+	 public void setRepresentantFilePath(File fileR){
 		 Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-		 if(file !=null){
-			 prefs.put("filesPath",file.getPath());
-			 primaryStage.setTitle("ToutBois - " + file.getName());
+		 if(fileR !=null){
+			 prefs.put("filesPath",fileR.getPath());
+			 primaryStage.setTitle("ToutBois - " + fileR.getName());
 		 } else {
 			 prefs.remove("filePatch");
-			 primaryStage.setTitle("ToutBois");}} 
+			 primaryStage.setTitle("ToutBois Representant");}} */
 		 
 	 
 	 
@@ -354,44 +433,142 @@ public class MainApp extends Application {
 	  * 
 	  * @param file
 	  */
-	/*
+	
 	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
-	public void loadSocieteDataFromFile(File file){
+	 
+	 public void loadMetierDataFromFile(File file){
+		 
 		 try{
+			 JAXBContext context = JAXBContext.newInstance(MetierListWrapper.class);
+			 Unmarshaller um = context.createUnmarshaller();
+			 
+			 MetierListWrapper wrapper = (MetierListWrapper)um.unmarshal(file);
+			 
+			 vrpData.clear();
+			 clientData.clear();
+			 prospectData.clear();
+			 vrpData.addAll(wrapper.getlistRepresentant());
+			 clientData.addAll(wrapper.getListClient());
+			 prospectData.addAll(wrapper.getListProspect());
+			 
+
+			 
+			 setMetierFilePath(file);
+			 
+		 } catch (Exception e) { // catches ANY exception
+				Alert alert = new Alert(AlertType.ERROR);
+				 alert.setTitle("Erreur de Telechargement");
+			        alert.setHeaderText("Impossible de télécharger les données");
+			        alert.setContentText("Impossible de télécharger les données depuis le fichier :\n" + file.getPath());
+
+				alert.showAndWait();
+			}
+		}
+	 			/////////////////////// PROSPECT \\\\\\\\\\\\\\\\\\\\\\\
+	 
+	/*public void loadProspectDataFromFile(File fileP){
+		 try{	
 			 JAXBContext context = JAXBContext.newInstance(ProspectListWrapper.class);
 			 Unmarshaller um = context.createUnmarshaller();
 			 
-			 ProspectListWrapper wrapperP = (ProspectListWrapper) um.unmarshal(file);
+			 ProspectListWrapper wrapperP = (ProspectListWrapper) um.unmarshal(fileP);
 			 prospectData.clear();
 			 prospectData.addAll(wrapperP.getVrp());
 			 
+			 setProspectFilePath(fileP);
+		 }catch (Exception e){
+			  Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Erreur de Telechargement");
+		        alert.setHeaderText("Impossible de charger les données Prospect");
+		        alert.setContentText("Impossible de chargé les données depuis le fichier : \n" + fileP.getPath());
+
+		        alert.showAndWait();}}*/
+			 
+			 		/////////////////////// CLIENT \\\\\\\\\\\\\\\\\\\\\\\
+	
+	/*public void loadClientDataFromFile(File fileC){
+		 try{
 			 JAXBContext contextC = JAXBContext.newInstance(ClientListWrapper.class);
 			 Unmarshaller umC = contextC.createUnmarshaller();
 			 
-			 ClientListWrapper wrapperC = (ClientListWrapper) umC.unmarshal(file);
+			 ClientListWrapper wrapperC = (ClientListWrapper) umC.unmarshal(fileC);
 			 clientData.clear();
 			 clientData.addAll(wrapperC.getClient());
 			 
+			 setClientFilePath(fileC);
+			 
+		 }catch (Exception e){
+			  Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Erreur de Telechargement");
+		        alert.setHeaderText("Impossible de charger les données Client");
+		        alert.setContentText("Impossible de chargé les données depuis le fichier : \n" + fileC.getPath());
+
+		        alert.showAndWait();}}*/
+			 
+			 		/////////////////////// REPRESENTANT \\\\\\\\\\\\\\\\\\\\\\\
+	
+	/*public void loadRepresentantDataFromFile(File fileR){
+		try{
 			 JAXBContext contextR = JAXBContext.newInstance(RepresentantListWrapper.class);
 			 Unmarshaller umR = contextR.createUnmarshaller();
 			 
-			 RepresentantListWrapper wrapperR = (RepresentantListWrapper)  umR.unmarshal(file);
+			 RepresentantListWrapper wrapperR = (RepresentantListWrapper) umR.unmarshal(fileR);
 			 vrpData.clear();
 			 vrpData.addAll(wrapperR.getlistRepresentant());
 
-			 setSocieteFilePath(file);
+			 setRepresentantFilePath(fileR);
 			 }catch (Exception e){
 				  Alert alert = new Alert(AlertType.ERROR);
-			        alert.setTitle("Erreur");
-			        alert.setHeaderText("Impossible de charger les données");
-			        alert.setContentText("Impossible de chargé les données depuis le fichier : \n" + file.getPath());
+			        alert.setTitle("Erreur de Telechargement");
+			        alert.setHeaderText("Impossible de charger les données Rperesentant");
+			        alert.setContentText("Impossible de chargé les données depuis le fichier : \n" + fileR.getPath());
 
-			        alert.showAndWait();}
-			 }
+			        alert.showAndWait();}}*/
 		 
 	 			/////////////////// Telechargement des données  \\\\\\\\\\\\\\\\\\\
+	
+					/////////////////////// GENERAL \\\\\\\\\\\\\\\\\\\\\\\
 	 
-	 public void SaveSocieteDataToFile(File file){
+	 public void SaveMetierDataToFile(File file){
+		 
+		 System.out.println("SaveMetierDataToFile");
+		 
+		 try {
+			 
+			 System.out.println("try");
+			 
+			 	JAXBContext context = JAXBContext.newInstance(MetierListWrapper.class);
+			 	 System.out.println("context");
+				Marshaller m = context.createMarshaller();
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				
+				
+				
+				
+				MetierListWrapper wrapper = new MetierListWrapper();
+				System.out.println("wrapper");
+				wrapper.setlistRepresentant(vrpData);
+				wrapper.setListClient(clientData);
+				wrapper.setListProspect(prospectData);
+				//wrapper.setListRegionBox(regionBoxData);
+				//wrapper.setListTypeBox(typeBoxData);
+				
+				m.marshal(wrapper, file);
+				
+				 setMetierFilePath(file);
+				 
+		 }catch (Exception e){
+			 Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Erreur de Sauvegarde");
+		        alert.setHeaderText("Impossible de sauvegarder les données");
+		        alert.setContentText("Impossible de sauvegarder les données sous le fichier :\n" + file.getPath());
+
+		        alert.showAndWait();}}
+	 
+	 	/////////////////////// PROSPECT \\\\\\\\\\\\\\\\\\\\\\\
+	 
+		/* public void SaveProspectDataToFile(File file){
+		 
 		 try{
 			 JAXBContext context = JAXBContext
 		                .newInstance(ProspectListWrapper.class);
@@ -400,16 +577,20 @@ public class MainApp extends Application {
 		        
 		        ProspectListWrapper wrapper = new ProspectListWrapper();
 		       // wrapper.setVrp((vrpData);
-		        m.marshal(wrapper, file);
-		        setSocieteFilePath(file);
+		        m.marshal(wrapper, fileP);
+		        
+		        setProspectFilePath(fileP);
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
-		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les données");
-		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
+		        alert.setTitle("Erreur de Sauvegarde");
+		        alert.setHeaderText("Impossible de sauvegarder les données Prospect");
+		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + fileP.getPath());
 
-		        alert.showAndWait();}
+		        alert.showAndWait();}}
 		 
+		 			/////////////////////// CLIENT \\\\\\\\\\\\\\\\\\\\\\\
+		 
+		 public void SaveClientDataToFile(File fileC){
 		 try{
 			 JAXBContext context = JAXBContext
 		                .newInstance(ClientListWrapper.class);
@@ -418,16 +599,20 @@ public class MainApp extends Application {
 		        
 		        ClientListWrapper wrapper = new ClientListWrapper();
 		       // wrapper.setVrp((vrpData);
-		        m.marshal(wrapper, file);
-		        setSocieteFilePath(file);
+		        m.marshal(wrapper, fileC);
+		        
+		        setClientFilePath(fileC);
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
-		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les données");
-		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
+		        alert.setTitle("Erreur de Sauvegarde");
+		        alert.setHeaderText("Impossible de sauvegarder les données Client");
+		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + fileC.getPath());
 
-		        alert.showAndWait();}
+		        alert.showAndWait();}}*/
 		 
+		 			/////////////////////// REPRESENTANT \\\\\\\\\\\\\\\\\\\\\\\
+		 
+		/* public void SaveRepresentantDataToFile(File fileR){ 
 		 try{
 			 JAXBContext context = JAXBContext
 		                .newInstance(RepresentantListWrapper.class);
@@ -436,20 +621,17 @@ public class MainApp extends Application {
 		        
 		        RepresentantListWrapper wrapper = new RepresentantListWrapper();
 		       // wrapper.setVrp((vrpData);
-		        m.marshal(wrapper, file);
-		        setSocieteFilePath(file);
+		        m.marshal(wrapper, fileR);
+		        
+		        setRepresentantFilePath(fileR);
 		 }catch (Exception e){
 			 Alert alert = new Alert(AlertType.ERROR);
-		        alert.setTitle("Erreur");
-		        alert.setHeaderText("Impossible de sauvegarder les données");
-		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + file.getPath());
+		        alert.setTitle("Erreur de Sauvegarde");
+		        alert.setHeaderText("Impossible de sauvegarder les données Representant");
+		        alert.setContentText("Impossible de sauvegarder les données depuis le fichier :\n" + fileR.getPath());
 
-		        alert.showAndWait();}
-		 
-	 } //end SaveSocieteDataFile
-	 */
-	 
-	 
+		        alert.showAndWait();}}*/
+
 	 //////////////////////////// AUTRES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	 
 	public Stage getPrimaryStage(){
