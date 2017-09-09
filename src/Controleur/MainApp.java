@@ -104,11 +104,11 @@ public class MainApp extends Application {
 		/**
 		 * Instanciation des données Client
 		 */
-		clientData.add(new Client(2,"Bricot Depot",451647903,5,200001,30,"Rue","De La Tourelle","CS 60501 Longpont Sur Orge","91315","Montlhery Cedex","Laporte","Marc","laporte.marc@Bricotdepot.fr","0625489712","50",12));
-		clientData.add(new Client(2,"Meubles Meyer",301273751,4,200002,70,"Rue","Du General Leclerc","","67270","Schwindratzheim","Lucie","Schaeffer","commercial@meyer.fr","0388919992","40",4));
-		clientData.add(new Client(2,"Demeure de Famille",434856381,1,200003,39,"Rue","Du Bosquiel","","59910","Bondues","Salome","Bleme","contact@fipo.com","0320760145","10",1));
-		clientData.add(new Client(2,"Les Meubles Niolet",377942537,3,200004,11,"Allee ","des Coustous","","65200","Bagneres-de-Bigorre","Julien","Niolet","julien.niolet@gmail.com","0562950281","30",3));
-		clientData.add(new Client(2,"Crea Mobilier",443393202,2,200005,74,"rue","d'Audierne","","29710","Plozevet","Bertrand","Claquin","Creamobilier@hotmail.fr","0298914951","20",7));
+		clientData.add(new Client(2,"Bricot Depot",451647903,5,1,30,"Rue","De La Tourelle","CS 60501 Longpont Sur Orge","91315","Montlhery Cedex","Laporte","Marc","laporte.marc@Bricotdepot.fr","0625489712","50",12));
+		clientData.add(new Client(2,"Meubles Meyer",301273751,4,2,70,"Rue","Du General Leclerc","","67270","Schwindratzheim","Lucie","Schaeffer","commercial@meyer.fr","0388919992","40",4));
+		clientData.add(new Client(2,"Demeure de Famille",434856381,1,3,39,"Rue","Du Bosquiel","","59910","Bondues","Salome","Bleme","contact@fipo.com","0320760145","10",1));
+		clientData.add(new Client(2,"Les Meubles Niolet",377942537,3,4,11,"Allee ","des Coustous","","65200","Bagneres-de-Bigorre","Julien","Niolet","julien.niolet@gmail.com","0562950281","30",3));
+		clientData.add(new Client(2,"Crea Mobilier",443393202,2,5,74,"rue","d'Audierne","","29710","Plozevet","Bertrand","Claquin","Creamobilier@hotmail.fr","0298914951","20",7));
 
 	} // end MainApp
 	
@@ -438,6 +438,8 @@ public class MainApp extends Application {
 	 
 	 public void loadMetierDataFromFile(File file){
 		 
+		 System.out.println("Try Load");
+		 
 		 try{
 			 JAXBContext context = JAXBContext.newInstance(MetierListWrapper.class);
 			 Unmarshaller um = context.createUnmarshaller();
@@ -447,9 +449,9 @@ public class MainApp extends Application {
 			 vrpData.clear();
 			 clientData.clear();
 			 prospectData.clear();
-			 vrpData.addAll(wrapper.getlistRepresentant());
-			 clientData.addAll(wrapper.getListClient());
-			 prospectData.addAll(wrapper.getListProspect());
+			 vrpData.addAll(wrapper.getRepresentant());
+			 clientData.addAll(wrapper.getClient());
+			 prospectData.addAll(wrapper.getProspect());
 			 
 
 			 
@@ -535,7 +537,7 @@ public class MainApp extends Application {
 		 
 		 try {
 			 
-			 System.out.println("try");
+			 System.out.println("try Save");
 			 
 			 	JAXBContext context = JAXBContext.newInstance(MetierListWrapper.class);
 			 	 System.out.println("context");
@@ -543,21 +545,25 @@ public class MainApp extends Application {
 				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 				
 				
-				
+				System.out.println("Wrapper");
 				
 				MetierListWrapper wrapper = new MetierListWrapper();
 				System.out.println("wrapper");
-				wrapper.setlistRepresentant(vrpData);
-				wrapper.setListClient(clientData);
-				wrapper.setListProspect(prospectData);
+				wrapper.setRepresentant(vrpData);
+				wrapper.setClient(clientData);
+				wrapper.setProspect(prospectData);
 				//wrapper.setListRegionBox(regionBoxData);
 				//wrapper.setListTypeBox(typeBoxData);
 				
+				System.out.println("m.marshal");
 				m.marshal(wrapper, file);
 				
+				System.out.println("SetMetierFilePath");
 				 setMetierFilePath(file);
 				 
+				 System.out.println("Catch Save");
 		 }catch (Exception e){
+			 e.printStackTrace();
 			 Alert alert = new Alert(AlertType.ERROR);
 		        alert.setTitle("Erreur de Sauvegarde");
 		        alert.setHeaderText("Impossible de sauvegarder les données");
