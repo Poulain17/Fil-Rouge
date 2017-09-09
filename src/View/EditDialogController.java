@@ -49,6 +49,8 @@ public class EditDialogController {
 	private TextField  tel;
 	@FXML
 	private TextField numVrp;
+	@FXML
+	private TextField nbCommande;
 
 	
 	private Stage dialogStage;
@@ -90,6 +92,7 @@ public class EditDialogController {
 	        mail.setText(prospect.getMail());
 	        tel.setText(prospect.getTel());
 	        numVrp.setText(prospect.getNumVrp());
+	        nbCommande.setText(Integer.toString(prospect.getNbCommande()));
 			
 	        /////Retirer les 0 present dans les TextField MAJ \\\\\
 			if(prospect.getRaisonSociale()!=null){		
@@ -149,6 +152,7 @@ public class EditDialogController {
 	            prospect.setMail(mail.getText());
 	            prospect.setTel(tel.getText());
 	            prospect.setNumVrp(numVrp.getText());
+	            prospect.setNbCommande(Integer.parseInt(nbCommande.getText()));
 	            
 	  /////////////////////////////// ComboBox \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
 	            
@@ -164,7 +168,9 @@ public class EditDialogController {
 			  b=a.split("");
 			  System.out.println("b = "+b[0]);
 			  prospect.setIndexRegion(Integer.parseInt(b[0]));
-			   
+			  
+			  
+	////////////////////////////// ProspectToClient \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 	
 			  
 			  okClicked = true;
 			  dialogStage.close();} 

@@ -68,6 +68,12 @@ public class ClientFrameController {
 	
 	
 	private MainApp mainApp;
+	public static boolean presser;
+	
+	public static boolean isPresser(){
+		return presser;
+		
+	}
 
 
 
@@ -101,6 +107,36 @@ public class ClientFrameController {
 	private void showClientDetails(Client client){
 		int i;
 		int ir;
+		if(ProspectFrameContoller.PtoC ==1){
+			raisonSociale.setText(ProspectFrameContoller.selectProspect.getRaisonSociale());
+			siren.setText(Integer.toString(ProspectFrameContoller.selectProspect.getSiren()));
+			idCompany.setText(Integer.toString(ProspectFrameContoller.selectProspect.getIdCompany()));
+			numVoie.setText(Integer.toString(ProspectFrameContoller.selectProspect.getNumVoie()));
+			typeVoie.setText(ProspectFrameContoller.selectProspect.getTypeVoie());
+			voie.setText(ProspectFrameContoller.selectProspect.getVoie());
+			complement.setText(ProspectFrameContoller.selectProspect.getComplement());
+			codePostal.setText(ProspectFrameContoller.selectProspect.getCodePostal());
+			ville.setText(ProspectFrameContoller.selectProspect.getVille());
+			type.setText(Integer.toString(ProspectFrameContoller.selectProspect.getIndexType()));
+			region.setText(Integer.toString(ProspectFrameContoller.selectProspect.getIndexRegion()));
+			nom.setText(ProspectFrameContoller.selectProspect.getNom());
+			prenom.setText(ProspectFrameContoller.selectProspect.getPrenom());
+			mail.setText(ProspectFrameContoller.selectProspect.getMail());
+			tel.setText(ProspectFrameContoller.selectProspect.getTel());
+			numVrp.setText(ProspectFrameContoller.selectProspect.getRepresentant().getNumVrp());
+			nomVrp.setText(ProspectFrameContoller.selectProspect.getRepresentant().getNomVrp());
+			prenomVrp.setText(ProspectFrameContoller.selectProspect.getRepresentant().getPrenomVrp());
+			regionVrp.setText(ProspectFrameContoller.selectProspect.getRepresentant().getregionVrp());
+			
+			i=ProspectFrameContoller.selectProspect.getIndexType();
+			type.setText(Integer.toString(i)+" - "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
+			ir=ProspectFrameContoller.selectProspect.getIndexRegion();
+			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());
+			
+			nbCommande.setText(Integer.toString(ProspectFrameContoller.selectProspect.getNbCommande()));
+		}else{
+		
+		
 		if(client !=null){
 			raisonSociale.setText(client.getRaisonSociale());
 			siren.setText(Integer.toString(client.getSiren()));
@@ -148,7 +184,7 @@ public class ClientFrameController {
 			numVrp.setText("");
 			nomVrp.setText("");
 			prenomVrp.setText("");
-			regionVrp.setText("");}}
+			regionVrp.setText("");}}}
 			
 	
 	

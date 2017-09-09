@@ -13,11 +13,13 @@ import javafx.stage.FileChooser;
 public class BaseLogicielController {
 
 	private MainApp mainApp;
+	static int a;
 
 	
 	//test
 	public void setMainApp(MainApp mainApp) {
-		this.mainApp=mainApp;}
+		this.mainApp=mainApp;
+		a = 1;}
 
 
 	@FXML

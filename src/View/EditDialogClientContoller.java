@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 	public class EditDialogClientContoller {
 		
 		@FXML
+		private TextField numClient;
+		@FXML
 		private ComboBox typeBox;
 		@FXML
 		private TextField  raisonSociale;
@@ -54,6 +56,7 @@ import javafx.stage.Stage;
 		private boolean okClicked = false;
 		private MainApp mainApp;
 
+
 		    @FXML
 		    private void initialize() {}
 		
@@ -62,16 +65,60 @@ import javafx.stage.Stage;
 		    }
 		    
 		    public void setDialogStage(Stage dialogStage) {
-		        this.dialogStage = dialogStage;  
-		    }
+		        this.dialogStage = dialogStage;}
 
 /////////////////////////////// Afficher donnée dans MAJ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 		    
 		    public void setSocieteClient(Client client) {
 		    	int i;
 		    	int ir;
+		    	
+		    	if(ProspectFrameContoller.PtoC ==1){
+		    		Client.clientCompteur++;    		
+		    		this.client = client;
+		    		 	//numClient.setText(client.getNumClient());
+						raisonSociale.setText(ProspectFrameContoller.selectProspect.getRaisonSociale());	
+						siren.setText(Integer.toString(ProspectFrameContoller.selectProspect.getSiren()));
+						numVoie.setText(Integer.toString(ProspectFrameContoller.selectProspect.getNumVoie()));
+						typeVoie.setText(ProspectFrameContoller.selectProspect.getTypeVoie());
+						voie.setText(ProspectFrameContoller.selectProspect.getVoie());
+						complement.setText(ProspectFrameContoller.selectProspect.getComplement());
+						codePostal.setText(ProspectFrameContoller.selectProspect.getCodePostal());
+						ville.setText(ProspectFrameContoller.selectProspect.getVille());
+						nom.setText(ProspectFrameContoller.selectProspect.getNom());
+				        prenom.setText(ProspectFrameContoller.selectProspect.getPrenom());
+				        mail.setText(ProspectFrameContoller.selectProspect.getMail());
+				        tel.setText(ProspectFrameContoller.selectProspect.getTel());
+				        numVrp.setText(ProspectFrameContoller.selectProspect.getNumVrp());
+				        
+				////////// TypeBox \\\\\\\\\\
+						if(ProspectFrameContoller.selectProspect == null){
+							typeBox.setItems(mainApp.getTypeBoxData());
+							typeBox.getSelectionModel().select(0);
+						}else{
+							typeBox.setItems(mainApp.getTypeBoxData());
+							i = client.getIndexType();
+								typeBox.getSelectionModel().select(i-1);}
+				    
+						//////////RegionBox \\\\\\\\\\
+						if(ProspectFrameContoller.selectProspect == null){
+							regionBox.setItems(mainApp.getRegionBoxData());
+							regionBox.getSelectionModel().select(0);
+						}else{
+							regionBox.setItems(mainApp.getRegionBoxData());
+							ir = client.getIndexRegion();
+								regionBox.getSelectionModel().select(ir-1);}
+						
+					/////Retirer les 0 present dans les TextField MAJ \\\\\
+						if(ProspectFrameContoller.selectProspect.getRaisonSociale()!=null){		
+						}else{
+							siren.setText(null);
+							numVoie.setText(null);}
+								
+		    	}else{
+		    		
 		        this.client = client;
-	    
+		        numClient.setText(client.getNumClient());
 				raisonSociale.setText(client.getRaisonSociale());	
 				siren.setText(Integer.toString(client.getSiren()));
 				numVoie.setText(Integer.toString(client.getNumVoie()));
@@ -80,7 +127,6 @@ import javafx.stage.Stage;
 				complement.setText(client.getComplement());
 				codePostal.setText(client.getCodePostal());
 				ville.setText(client.getVille());
-				//regionBox.setPromptText(client.getRegion());
 				nom.setText(client.getNom());
 		        prenom.setText(client.getPrenom());
 		        mail.setText(client.getMail());
@@ -111,11 +157,11 @@ import javafx.stage.Stage;
 				}else{
 					regionBox.setItems(mainApp.getRegionBoxData());
 					ir = client.getIndexRegion();
-						regionBox.getSelectionModel().select(ir-1);
-						
+						regionBox.getSelectionModel().select(ir-1);}
+		    	}
 				
 					 okClicked = true;
-					dialogStage.close();}
+					dialogStage.close();
 		  		    
 } //end setSocieteClient
 		  
@@ -173,6 +219,14 @@ import javafx.stage.Stage;
 		    
 		    @FXML
 		    private void handleCancel(){
+		    	
+		    	if(ProspectFrameContoller.PtoC == 1){
+		    		client.setClientCompteur(client.getClientCompteur()-1);}
+		    	
+		    	if(ClientFrameController.isPresser()==true){
+		    		client.setClientCompteur(client.getClientCompteur()-1);}
+		    	
+		    	
 		    	dialogStage.close();  }
 
 		    

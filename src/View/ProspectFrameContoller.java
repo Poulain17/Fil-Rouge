@@ -1,5 +1,7 @@
 package View;
 
+import java.io.File;
+
 /**
  * Classe de controle de la fenetre Prospect
  * 
@@ -7,6 +9,7 @@ package View;
  */
 
 import Controleur.MainApp;
+import Model.Client;
 import Model.Prospect;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -72,6 +75,9 @@ public class ProspectFrameContoller {
 	private Label numVrp;
 	@FXML
 	private Label nbCommande;
+	
+	public static int PtoC = 0;
+	public static Prospect selectProspect;
 
 	
 	
@@ -194,7 +200,7 @@ public class ProspectFrameContoller {
 	}
 		
 	//********************** Supprimer Prospect 	**********************//
-	
+
 	@FXML
 	void handleDeleteProsepect() {
 		    int selectedIndex = prospectTable.getSelectionModel().getSelectedIndex();
@@ -208,11 +214,43 @@ public class ProspectFrameContoller {
 		        alert.setHeaderText("Aucune donnée séléctionnée");
 		        alert.setContentText("Merci de séléctionner une donnée.");
 
-		        alert.showAndWait();
-		    }
-		}
+		        alert.showAndWait();}
+		    
+		} //end handleDeleteProspect
 	
 	//********************** Transfert de collections 	**********************//
+	
+	@FXML
+	public void handleProspectToClient(){
+		selectProspect = prospectTable.getSelectionModel().getSelectedItem();
+		if(selectProspect != null){
+			PtoC = 1;
+			ClientFrameController.presser = true;
+			BaseLogicielController.a =1;
+			
+			Client tempClient = new Client();
+			boolean okClicked = mainApp.showEditDialogClient(tempClient);
+			
+			if(okClicked){
+				ProspectFrameContoller.PtoC=0;
+				mainApp.getProspectData().remove(selectProspect);
+				File file = mainApp.getMetierFilePath();
+				if(file !=null){
+					mainApp.SaveMetierDataToFile(file);
+					mainApp.showClientFrame();
+					mainApp.getClientData().add(tempClient);
+					Client.clientCompteur++;
+				} else {
+					// Si aucune ligne sélectionné, message d'erreur.
+		            Alert alert = new Alert(AlertType.WARNING);
+		            alert.initOwner(mainApp.getPrimaryStage());
+		            alert.setTitle("Pas de sélection");
+		            alert.setHeaderText("Aucun prospect sélectionner");
+		            alert.setContentText("Veuillez sélectionner un prospect.");
+		            alert.showAndWait();}
+		} //end if okClicked
+	} // end if selectProspect
+} //end ProspectToClient
 
 	
 	
