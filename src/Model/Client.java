@@ -3,8 +3,12 @@ package Model;
 
 
 import Controleur.MainApp;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Classe Prospect fille de la Classe Societe
@@ -14,7 +18,8 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Client extends Societe{
 	
-
+	private final StringProperty numClient;
+	public static int clientCompteur;
 	private static int numVrpCompteur;
 	private String numVrp;
 	int indexClient = 2;
@@ -34,7 +39,9 @@ private ObjectProperty<Representant> representant;
 			String mail, String tel, String numVrp, Integer nbCommande) {
 		super(indexType, raisonSociale, siren, indexRegion, idCompany, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
 				prenom, mail, tel, numVrp, nbCommande);
-
+		clientCompteur ++;// Compteur pour l'incrementation du numero de client
+		String numCompteur = Integer.toString(clientCompteur);
+		this.numClient = new SimpleStringProperty(numCompteur);
 
 		this.setNbCommande(1);
 		
@@ -43,33 +50,41 @@ private ObjectProperty<Representant> representant;
 				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
 		}//end for
 	
-		numVrpCompteur ++;
-		String numCompteur = Integer.toString(numVrpCompteur);
-		numVrp = numCompteur;
-			
 	} //end Constuctor	
 
 		
+	public String getNumClient() {
+		return numClient.get();}
+	
+	public void setNumClient(String numClient){
+		this.numClient.set(numClient);}
+	
+	public StringProperty numClientProperty(){
+		return numClient;}
+	
+	public int getClientCompteur() {
+		return clientCompteur;}
+	
+	public void setClientCompteur(int clientCompteur) {
+		Client.clientCompteur = clientCompteur;}
+
+	
 	public int getnumVrpCompteur(){
-		return numVrpCompteur;
-	}
+		return numVrpCompteur;}
 	
 	public void setnumVrpCompteur(int numVrp){
-		numVrpCompteur = numVrpCompteur;
-	}
+		numVrpCompteur = numVrpCompteur;}
 
 	public  void setRepresentant(Representant value){
 		representant.set(value);}
 	
 	public Representant getRepresentant(){
-		return representant.get();
-	}
+		return representant.get();}
 
 
 	public String getRegion() {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		return null;}
 	
 	
 	
