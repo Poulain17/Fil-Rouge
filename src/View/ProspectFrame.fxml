@@ -70,7 +70,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="idCompany" layoutX="458.0" layoutY="74.0" prefHeight="17.0" prefWidth="134.0" text="idCompany" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="75.0" />
+            <Label fx:id="numProspect" layoutX="458.0" layoutY="74.0" prefHeight="17.0" prefWidth="134.0" text="idCompany" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="75.0" />
             <Label layoutX="10.0" layoutY="181.0" prefHeight="22.0" prefWidth="79.0" text="Region" textAlignment="RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="180.0">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
@@ -97,7 +97,6 @@
                </font>
             </Label>
             <Label fx:id="nbCommande" layoutX="420.0" layoutY="155.0" text="Label" AnchorPane.topAnchor="155.0" />
-            <Button alignment="TOP_CENTER" layoutX="314.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleProspectToClient" prefHeight="33.0" prefWidth="134.0" text="Client" textAlignment="CENTER" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="20.0" layoutY="540.0" prefHeight="200.0" prefWidth="200.0" styleClass="background1" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="540.0">

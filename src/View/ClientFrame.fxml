@@ -70,7 +70,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="idCompany" layoutX="458.0" layoutY="74.0" prefHeight="17.0" prefWidth="134.0" text="idCompany" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="75.0" />
+            <Label fx:id="numClient" layoutX="458.0" layoutY="74.0" prefHeight="17.0" prefWidth="134.0" text="idCompany" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="75.0" />
             <Label layoutX="10.0" layoutY="181.0" prefHeight="22.0" prefWidth="79.0" text="Region" textAlignment="RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="180.0">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
@@ -117,9 +117,9 @@
                      <children>
                         <TableView fx:id="ClientTable" layoutX="57.0" layoutY="-11.0" prefHeight="180.0" prefWidth="749.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
+                              <TableColumn fx:id="numClientColumn" prefWidth="75.0" text="Numéro de Client" />
                             <TableColumn fx:id="raisonSocialeColumn" prefWidth="200.0" text="Raison Sociale" />
                               <TableColumn fx:id="sirenColumn" prefWidth="75.0" text="Siren" />
-                              <TableColumn fx:id="regionColumn" prefWidth="75.0" text="Region" />
                               <TableColumn fx:id="VrpColumn" prefWidth="75.0" text="Representant" />
                           </columns>
                            <columnResizePolicy>

@@ -41,10 +41,10 @@
             <Label text="Siren : " GridPane.rowIndex="2" />
             <TextField fx:id="raisonSociale" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="siren" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="357.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Type : " GridPane.rowIndex="3" />
-            <Label prefHeight="17.0" prefWidth="150.0" text="Numéro de Representant : " GridPane.rowIndex="4" />
-            <TextField fx:id="numVrp" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label prefHeight="17.0" prefWidth="150.0" text="Numéro de Representant : " GridPane.rowIndex="3" />
+            <TextField fx:id="numVrp" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Nombre de commande :" GridPane.rowIndex="4" />
+            <TextField fx:id="nbCommande" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <GridPane layoutY="164.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="210.0">
