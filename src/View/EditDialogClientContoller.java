@@ -174,7 +174,7 @@ import javafx.stage.Stage;
 		            try {
 		                Integer.parseInt(siren.getText());
 		            } catch (NumberFormatException e) {
-		                errorMessage +=  "Saisir des données numérique uniquement !\n"; 
+		                errorMessage +=  "Saisir des données numérique uniquement (Siren)!\n"; 
 		            }
 		        }
 
@@ -186,7 +186,7 @@ import javafx.stage.Stage;
 		            try {
 		                Integer.parseInt(numVoie.getText());
 		            } catch (NumberFormatException e) {
-		                errorMessage += "Saisir des données numérique uniquement!\n";
+		                errorMessage += "Saisir des données numérique uniquement! (NumVoie)\n";
 		                		 
 		            }
 		        }

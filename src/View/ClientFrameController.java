@@ -123,10 +123,14 @@ public class ClientFrameController {
 			mail.setText(client.getMail());
 			tel.setText(client.getTel());
 			nbCommande.setText(Integer.toString(client.getNbCommande()));
-			numVrp.setText(client.getRepresentant().getNumVrp());
-			nomVrp.setText(client.getRepresentant().getNomVrp());
-			prenomVrp.setText(client.getRepresentant().getPrenomVrp());
-			regionVrp.setText(client.getRepresentant().getregionVrp());
+			System.out.println(client.getNumVrp());
+			numVrp.setText(client.getNumVrp());
+			System.out.println(mainApp.getRepresentant(client.getNumVrp()).getNomVrp());
+			nomVrp.setText(mainApp.getRepresentant(client.getNumVrp()).getNomVrp());
+			
+			prenomVrp.setText(mainApp.getRepresentant(client.getNumVrp()).getPrenomVrp());
+			regionVrp.setText(mainApp.getRepresentant(client.getNumVrp()).getregionVrp());
+			
 	
 			ir=client.getIndexRegion();
 			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());		

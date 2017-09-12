@@ -160,18 +160,18 @@ public class EditDialogController {
 			  
 			  if(Integer.parseInt(nbCommande.getText()) >=1){
 				  
-				  int option = JOptionPane.showConfirmDialog(null, "Attention ! \n"+ "\n"+
+
+
+				 int option = JOptionPane.showConfirmDialog(null, "Attention ! \n"+ "\n"+
 															"Etes-vous sur de vouloir envoyer ce prospect " + "\n" +
 						  									"''"+raisonSociale.getText() +"''"+ "\n" +
 						  									" vers la liste Client ?");
-				  if(option == JOptionPane.OK_OPTION){
+				 if(option == JOptionPane.OK_OPTION){
 					  Client client = new Client(prospect);
 					  mainApp.getProspectData().remove(prospect);
-					  mainApp.getClientData().add(client);		  
-				  }
+					  mainApp.getClientData().add(client); }}
 				  
-			  }
-			  
+	
 			  okClicked = true;
 			  dialogStage.close();} 
 }  //End HandleOk

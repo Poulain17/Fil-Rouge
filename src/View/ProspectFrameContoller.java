@@ -123,10 +123,10 @@ public class ProspectFrameContoller {
 			prenom.setText(prospect.getPrenom());
 			mail.setText(prospect.getMail());
 			tel.setText(prospect.getTel());
-			numVrp.setText(prospect.getRepresentant().getNumVrp());
-			nomVrp.setText(prospect.getRepresentant().getNomVrp());
-			prenomVrp.setText(prospect.getRepresentant().getPrenomVrp());
-			regionVrp.setText(prospect.getRepresentant().getregionVrp());
+			numVrp.setText(mainApp.getRepresentant(prospect.getTel()).getNumVrp());
+			nomVrp.setText(mainApp.getRepresentant(prospect.getTel()).getNomVrp());
+			prenomVrp.setText(mainApp.getRepresentant(prospect.getTel()).getPrenomVrp());
+			regionVrp.setText(mainApp.getRepresentant(prospect.getTel()).getregionVrp());
 
 			
 			ir=prospect.getIndexRegion();
