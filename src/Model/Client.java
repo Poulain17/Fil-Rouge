@@ -18,36 +18,35 @@ import javafx.beans.property.StringProperty;
  */
 
 public class Client extends Societe{
-	
+
 	private final IntegerProperty numClient;
-	public static int clientCompteur = 0;
+	public static Integer clientCompteur = 0;
 
-	
-	
-public MainApp mainApp;
 
-private ObjectProperty<Representant> representant;
+	public MainApp mainApp;
+
+	private ObjectProperty<Representant> representant;
 
 	public Client(String raisonSociale, Integer siren, Integer indexRegion, Integer numVoie, String typeVoie, String voie, 
 			String complement, String codePostal, String ville, String nom, String prenom, String mail, String tel, String numVrp, Integer nbCommande) {
 		super(raisonSociale, siren, indexRegion, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
 				prenom, mail, tel, numVrp, nbCommande);
-		
+
 		clientCompteur ++;
 		this.numClient = new SimpleIntegerProperty(clientCompteur);
 
 		this.setNbCommande(1);
-		
+
 		for(Representant vrp : MainApp.getVrp()){
 			if(numVrp == (vrp.getNumVrp())){
 				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
 		}//end for
 	}	
-		public Client(){
-			this(null,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
-		
-		public Client (Prospect prospect){
-		
+	public Client(){
+		this(null,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
+
+	public Client (Prospect prospect){
+
 		this.raisonSociale = prospect.raisonSocialeProperty();
 		this.siren = prospect.sirenProperty();
 		this.indexRegion = prospect.indexRegionProperty();
@@ -65,38 +64,17 @@ private ObjectProperty<Representant> representant;
 		clientCompteur ++;
 		this.numClient = new SimpleIntegerProperty(clientCompteur);
 
-	
 	} //end Constuctor	
 
-		
+
 	public Integer getNumClient() {
 		return numClient.get();}
-	
+
 	public void setNumClient(Integer numClient){
 		this.numClient.set(numClient);}
-	
+
 	public IntegerProperty numClientProperty(){
 		return numClient;}
-	
-	public int getClientCompteur() {
-		return clientCompteur;}
-	
-	public void setClientCompteur(int clientCompteur) {
-		Client.clientCompteur = clientCompteur;}
 
 
-	public  void setRepresentant(Representant value){
-		representant.set(value);}
-	
-	public Representant getRepresentant(){
-		return representant.get();}
-
-
-	public String getRegion() {
-		// TODO Auto-generated method stub
-		return null;}
-	
-	
-	
-	
 }// End Client

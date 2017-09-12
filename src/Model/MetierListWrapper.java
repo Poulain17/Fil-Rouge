@@ -25,9 +25,6 @@ public class MetierListWrapper {
 	
 	private List<Client> client;
 	
-
-
-	@XmlElementWrapper(name = "client")
 	@XmlElement(name = "client")
 	public List<Client> getClient(){	
 		return  (List<Client>) client;}
@@ -39,7 +36,6 @@ public class MetierListWrapper {
 	
 	private List<Prospect> prospect;
 	
-	 @XmlElementWrapper(name = "prospect")
 	 @XmlElement(name = "prospect")
 	 public List<Prospect> getProspect(){	 
 		 return (List<Prospect>)prospect;}
@@ -50,8 +46,7 @@ public class MetierListWrapper {
 	 ///////////////////// REPRESENTANT \\\\\\\\\\\\\\\\\\
 	 
 	 private List<Representant> Representant;
-		
-	 	@XmlElementWrapper(name = "representant")
+
 		@XmlElement(name = "representant")
 		public List<Representant> getRepresentant(){
 			return (List<Representant>)Representant;}
