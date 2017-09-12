@@ -19,7 +19,7 @@ import javafx.beans.property.StringProperty;
 
 public class Client extends Societe{
 	
-	public final IntegerProperty numClient;
+	private final IntegerProperty numClient;
 	public static int clientCompteur = 0;
 
 	
