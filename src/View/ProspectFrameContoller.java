@@ -115,6 +115,7 @@ public class ProspectFrameContoller {
 			siren.setText(Integer.toString(prospect.getSiren()));
 			numVoie.setText(Integer.toString(prospect.getNumVoie()));
 			voie.setText(prospect.getVoie());
+			typeVoie.setText(prospect.getTypeVoie());
 			complement.setText(prospect.getComplement());
 			codePostal.setText(prospect.getCodePostal());
 			ville.setText(prospect.getVille());

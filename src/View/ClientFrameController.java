@@ -113,6 +113,7 @@ public class ClientFrameController {
 			siren.setText(Integer.toString(client.getSiren()));
 			numVoie.setText(Integer.toString(client.getNumVoie()));
 			voie.setText(client.getVoie());
+			typeVoie.setText(client.getTypeVoie());
 			complement.setText(client.getComplement());
 			codePostal.setText(client.getCodePostal());
 			ville.setText(client.getVille());
