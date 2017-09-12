@@ -34,15 +34,12 @@ public class ProspectFrameContoller {
 	private TableColumn<Prospect, String>VrpColumn;
 
 
-	
 	@FXML
-	private Label  type;
+	private Label numProspect;
 	@FXML
 	private Label  raisonSociale;
 	@FXML
 	private Label  siren;
-	@FXML
-	private Label  idCompany;
 	@FXML
 	private Label  numVoie;
 	@FXML
@@ -112,16 +109,15 @@ public class ProspectFrameContoller {
 		int ir;
 
 		if(prospect !=null){
+			
+			numProspect.setText(Integer.toString(prospect.getNumProspect()));
 			raisonSociale.setText(prospect.getRaisonSociale());
 			siren.setText(Integer.toString(prospect.getSiren()));
-			idCompany.setText(Integer.toString(prospect.getIdCompany()));
 			numVoie.setText(Integer.toString(prospect.getNumVoie()));
-			typeVoie.setText(prospect.getTypeVoie());
 			voie.setText(prospect.getVoie());
 			complement.setText(prospect.getComplement());
 			codePostal.setText(prospect.getCodePostal());
 			ville.setText(prospect.getVille());
-			//region.setText(prospect.getRegion());
 			nom.setText(prospect.getNom());
 			prenom.setText(prospect.getPrenom());
 			mail.setText(prospect.getMail());
@@ -132,20 +128,17 @@ public class ProspectFrameContoller {
 			regionVrp.setText(prospect.getRepresentant().getregionVrp());
 
 			
-			i=prospect.getIndexType();
-			type.setText(Integer.toString(i)+" - "+mainApp.getTypeBoxData().get(i-1).getTypeBox());
-			
 			ir=prospect.getIndexRegion();
 			region.setText(Integer.toString(ir)+" - " + mainApp.getRegionBoxData().get(ir-1).getRegionBox());
 
 			nbCommande.setText(Integer.toString(prospect.getNbCommande()));
 			
 		}else{
-			type.setText("");
+			numProspect.setText("");
+			typeVoie.setText("");
 			region.setText("");
 			raisonSociale.setText("");
 			siren.setText("");
-			idCompany.setText("");
 			numVoie.setText("");
 			typeVoie.setText("");
 			voie.setText("");
@@ -217,41 +210,6 @@ public class ProspectFrameContoller {
 		        alert.showAndWait();}
 		    
 		} //end handleDeleteProspect
-	
-	//********************** Transfert de collections 	**********************//
-	
-	@FXML
-	public void handleProspectToClient(){
-		selectProspect = prospectTable.getSelectionModel().getSelectedItem();
-		if(selectProspect != null){
-			PtoC = 1;
-			ClientFrameController.presser = true;
-			BaseLogicielController.a =1;
-			
-			Client tempClient = new Client();
-			boolean okClicked = mainApp.showEditDialogClient(tempClient);
-			
-			if(okClicked){
-				ProspectFrameContoller.PtoC=0;
-				mainApp.getProspectData().remove(selectProspect);
-				File file = mainApp.getMetierFilePath();
-				if(file !=null){
-					mainApp.SaveMetierDataToFile(file);
-					mainApp.showClientFrame();
-					mainApp.getClientData().add(tempClient);
-					Client.clientCompteur++;
-				} else {
-					// Si aucune ligne sélectionné, message d'erreur.
-		            Alert alert = new Alert(AlertType.WARNING);
-		            alert.initOwner(mainApp.getPrimaryStage());
-		            alert.setTitle("Pas de sélection");
-		            alert.setHeaderText("Aucun prospect sélectionner");
-		            alert.setContentText("Veuillez sélectionner un prospect.");
-		            alert.showAndWait();}
-		} //end if okClicked
-	} // end if selectProspect
-} //end ProspectToClient
 
-	
 	
 }//end prospectFrameController

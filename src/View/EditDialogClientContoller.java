@@ -16,11 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 	public class EditDialogClientContoller {
-		
-		@FXML
-		private TextField numClient;
-		@FXML
-		private ComboBox typeBox;
+
 		@FXML
 		private TextField  raisonSociale;
 		@FXML
@@ -49,7 +45,8 @@ import javafx.stage.Stage;
 		private TextField  tel;
 		@FXML
 		private TextField numVrp;
-		
+		@FXML
+		private TextField nbCommande;
 		
 		private Stage dialogStage;
 		private Client client;
@@ -72,53 +69,8 @@ import javafx.stage.Stage;
 		    public void setSocieteClient(Client client) {
 		    	int i;
 		    	int ir;
-		    	
-		    	if(ProspectFrameContoller.PtoC ==1){
-		    		Client.clientCompteur++;    		
-		    		this.client = client;
-		    		 	//numClient.setText(client.getNumClient());
-						raisonSociale.setText(ProspectFrameContoller.selectProspect.getRaisonSociale());	
-						siren.setText(Integer.toString(ProspectFrameContoller.selectProspect.getSiren()));
-						numVoie.setText(Integer.toString(ProspectFrameContoller.selectProspect.getNumVoie()));
-						typeVoie.setText(ProspectFrameContoller.selectProspect.getTypeVoie());
-						voie.setText(ProspectFrameContoller.selectProspect.getVoie());
-						complement.setText(ProspectFrameContoller.selectProspect.getComplement());
-						codePostal.setText(ProspectFrameContoller.selectProspect.getCodePostal());
-						ville.setText(ProspectFrameContoller.selectProspect.getVille());
-						nom.setText(ProspectFrameContoller.selectProspect.getNom());
-				        prenom.setText(ProspectFrameContoller.selectProspect.getPrenom());
-				        mail.setText(ProspectFrameContoller.selectProspect.getMail());
-				        tel.setText(ProspectFrameContoller.selectProspect.getTel());
-				        numVrp.setText(ProspectFrameContoller.selectProspect.getNumVrp());
-				        
-				////////// TypeBox \\\\\\\\\\
-						if(ProspectFrameContoller.selectProspect == null){
-							typeBox.setItems(mainApp.getTypeBoxData());
-							typeBox.getSelectionModel().select(0);
-						}else{
-							typeBox.setItems(mainApp.getTypeBoxData());
-							i = client.getIndexType();
-								typeBox.getSelectionModel().select(i-1);}
-				    
-						//////////RegionBox \\\\\\\\\\
-						if(ProspectFrameContoller.selectProspect == null){
-							regionBox.setItems(mainApp.getRegionBoxData());
-							regionBox.getSelectionModel().select(0);
-						}else{
-							regionBox.setItems(mainApp.getRegionBoxData());
-							ir = client.getIndexRegion();
-								regionBox.getSelectionModel().select(ir-1);}
-						
-					/////Retirer les 0 present dans les TextField MAJ \\\\\
-						if(ProspectFrameContoller.selectProspect.getRaisonSociale()!=null){		
-						}else{
-							siren.setText(null);
-							numVoie.setText(null);}
-								
-		    	}else{
-		    		
 		        this.client = client;
-		        numClient.setText(client.getNumClient());
+
 				raisonSociale.setText(client.getRaisonSociale());	
 				siren.setText(Integer.toString(client.getSiren()));
 				numVoie.setText(Integer.toString(client.getNumVoie()));
@@ -132,6 +84,8 @@ import javafx.stage.Stage;
 		        mail.setText(client.getMail());
 		        tel.setText(client.getTel());
 		        numVrp.setText(client.getNumVrp());
+		        nbCommande.setText(Integer.toString(client.getNbCommande()));
+				
 		        
 		        /////Retirer les 0 present dans les TextField MAJ \\\\\
 				if(client.getRaisonSociale()!=null){		
@@ -140,15 +94,6 @@ import javafx.stage.Stage;
 					numVoie.setText(null);}
 														
 				///// Declaration ComboBox \\\\\
-				
-				////////// TypeBox \\\\\\\\\\
-				if(client == null){
-					typeBox.setItems(mainApp.getTypeBoxData());
-					typeBox.getSelectionModel().select(0);
-				}else{
-					typeBox.setItems(mainApp.getTypeBoxData());
-					i = client.getIndexType();
-						typeBox.getSelectionModel().select(i-1);}
 		    
 				//////////RegionBox \\\\\\\\\\
 				if(client == null){
@@ -158,7 +103,7 @@ import javafx.stage.Stage;
 					regionBox.setItems(mainApp.getRegionBoxData());
 					ir = client.getIndexRegion();
 						regionBox.getSelectionModel().select(ir-1);}
-		    	}
+		    	
 				
 					 okClicked = true;
 					dialogStage.close();
@@ -176,8 +121,7 @@ import javafx.stage.Stage;
 		    			String a;
 		    			String b[];
 		    	        if (isInputValid()) {
-		    	        	
-		    	        	
+
 		    	        	client.setRaisonSociale(raisonSociale.getText());
 		    	        	client.setSiren(Integer.parseInt(siren.getText()));        
 		    	        	client.setNumVoie(Integer.parseInt(numVoie.getText()));
@@ -191,18 +135,11 @@ import javafx.stage.Stage;
 		    	            client.setMail(mail.getText());
 		    	            client.setTel(tel.getText());
 		    	            client.setNumVrp(numVrp.getText());
+		    	            client.setNbCommande(Integer.parseInt(nbCommande.getText()));
 		    	            
-		    	        	
-		    	        	
 
 	/////////////////////////////// ComboBox \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
-	    
-		    	            
-		    				  s = typeBox.getValue().toString();
-		    				  System.out.println("s = "+s);
-		    				  t=s.split("");
-		    				  System.out.println("t = "+t[0]);
-		    				  client.setIndexType(Integer.parseInt(t[0]));
+
 		    				  
 		    				  a = regionBox.getValue().toString();
 		    				  System.out.println("a = "+a);
@@ -220,12 +157,8 @@ import javafx.stage.Stage;
 		    @FXML
 		    private void handleCancel(){
 		    	
-		    	if(ProspectFrameContoller.PtoC == 1){
-		    		client.setClientCompteur(client.getClientCompteur()-1);}
-		    	
-		    	if(ClientFrameController.isPresser()==true){
-		    		client.setClientCompteur(client.getClientCompteur()-1);}
-		    	
+		    	Client.clientCompteur--;
+		    	mainApp.getClientData().remove(client);
 		    	
 		    	dialogStage.close();  }
 

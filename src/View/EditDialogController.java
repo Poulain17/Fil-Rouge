@@ -1,5 +1,7 @@
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  * Classe de mise a jour des données
  * 
@@ -8,6 +10,7 @@ package View;
 
 
 import Controleur.MainApp;
+import Model.Client;
 import Model.Prospect;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,8 +22,6 @@ import javafx.stage.Stage;
 public class EditDialogController {
 
 	
-	@FXML
-	private ComboBox typeBox;
 	@FXML
 	private TextField  raisonSociale;
 	@FXML
@@ -85,7 +86,6 @@ public class EditDialogController {
 			complement.setText(prospect.getComplement());
 			codePostal.setText(prospect.getCodePostal());
 			ville.setText(prospect.getVille());
-			//regionBox.setPromptText(prospect.getRegion());
 			numVrp.setPromptText(prospect.getNumVrp());
 			nom.setText(prospect.getNom());
 	        prenom.setText(prospect.getPrenom());
@@ -101,15 +101,7 @@ public class EditDialogController {
 				numVoie.setText(null);}
 													
 	////////////////// Declaration ComboBox \\\\\\\\\\\\\\\\\\\\
-			
-			////////// TypeBox \\\\\\\\\\
-			if(prospect == null){
-				typeBox.setItems(mainApp.getTypeBoxData());
-				typeBox.getSelectionModel().select(0);
-			}else{
-				typeBox.setItems(mainApp.getTypeBoxData());
-				i = prospect.getIndexType();
-					typeBox.getSelectionModel().select(i-1);}
+
 	    
 	    	////////// RegionBox \\\\\\\\\\
 			if(prospect == null){
@@ -156,13 +148,7 @@ public class EditDialogController {
 	            
 	  /////////////////////////////// ComboBox \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\       
 	            
-		          
-			  s = typeBox.getValue().toString();
-			  System.out.println("s = "+s);
-			  t=s.split("");
-			  System.out.println("t = "+t[0]);
-			  prospect.setIndexType(Integer.parseInt(t[0]));
-			  
+	  
 			  a = regionBox.getValue().toString();
 			  System.out.println("a = "+a);
 			  b=a.split("");
@@ -171,6 +157,20 @@ public class EditDialogController {
 			  
 			  
 	////////////////////////////// ProspectToClient \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 	
+			  
+			  if(Integer.parseInt(nbCommande.getText()) >=1){
+				  
+				  int option = JOptionPane.showConfirmDialog(null, "Attention ! \n"+ "\n"+
+															"Etes-vous sur de vouloir envoyer ce prospect " + "\n" +
+						  									"''"+raisonSociale.getText() +"''"+ "\n" +
+						  									" vers la liste Client ?");
+				  if(option == JOptionPane.OK_OPTION){
+					  Client client = new Client(prospect);
+					  mainApp.getProspectData().remove(prospect);
+					  mainApp.getClientData().add(client);		  
+				  }
+				  
+			  }
 			  
 			  okClicked = true;
 			  dialogStage.close();} 
