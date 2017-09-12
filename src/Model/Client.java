@@ -3,6 +3,7 @@ package Model;
 
 
 import Controleur.MainApp;
+import View.ProspectFrameContoller;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -18,30 +19,22 @@ import javafx.beans.property.StringProperty;
 
 public class Client extends Societe{
 	
-	private final StringProperty numClient;
-	public static int clientCompteur;
-	private static int numVrpCompteur;
-	private String numVrp;
-	int indexClient = 2;
+	public final IntegerProperty numClient;
+	public static int clientCompteur = 0;
+
+	
 	
 public MainApp mainApp;
 
 private ObjectProperty<Representant> representant;
 
-
-
-	public Client(){
-		this(0,null,0,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
-
-
-	public Client(Integer indexType,String raisonSociale, Integer siren, Integer indexRegion, Integer idCompany, Integer numVoie,
-			String typeVoie, String voie, String complement, String codePostal, String ville, String nom, String prenom,
-			String mail, String tel, String numVrp, Integer nbCommande) {
-		super(indexType, raisonSociale, siren, indexRegion, idCompany, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
+	public Client(String raisonSociale, Integer siren, Integer indexRegion, Integer numVoie, String typeVoie, String voie, 
+			String complement, String codePostal, String ville, String nom, String prenom, String mail, String tel, String numVrp, Integer nbCommande) {
+		super(raisonSociale, siren, indexRegion, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
 				prenom, mail, tel, numVrp, nbCommande);
-		clientCompteur ++;// Compteur pour l'incrementation du numero de client
-		String numCompteur = Integer.toString(clientCompteur);
-		this.numClient = new SimpleStringProperty(numCompteur);
+		
+		clientCompteur ++;
+		this.numClient = new SimpleIntegerProperty(clientCompteur);
 
 		this.setNbCommande(1);
 		
@@ -49,17 +42,40 @@ private ObjectProperty<Representant> representant;
 			if(numVrp == (vrp.getNumVrp())){
 				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
 		}//end for
+	}	
+		public Client(){
+			this(null,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
+		
+		public Client (Prospect prospect){
+		
+		this.raisonSociale = prospect.raisonSocialeProperty();
+		this.siren = prospect.sirenProperty();
+		this.indexRegion = prospect.indexRegionProperty();
+		this.numVoie = prospect.numVoieProperty();
+		this.voie = prospect.voieProperty();
+		this.complement = prospect.complementProperty();
+		this.codePostal = prospect.codePostalProperty();
+		this.ville = prospect.villeProperty();
+		this.nom = prospect.nomProperty();
+		this.prenom = prospect.prenomProperty();
+		this.mail = prospect.mailProperty();
+		this.tel = prospect.telProperty();
+		this.numVrp = prospect.numVrpProperty();
+		this.nbCommande = prospect.nbCommandeProperty();
+		clientCompteur ++;
+		this.numClient = new SimpleIntegerProperty(clientCompteur);
+
 	
 	} //end Constuctor	
 
 		
-	public String getNumClient() {
+	public Integer getNumClient() {
 		return numClient.get();}
 	
-	public void setNumClient(String numClient){
+	public void setNumClient(Integer numClient){
 		this.numClient.set(numClient);}
 	
-	public StringProperty numClientProperty(){
+	public IntegerProperty numClientProperty(){
 		return numClient;}
 	
 	public int getClientCompteur() {
@@ -68,12 +84,6 @@ private ObjectProperty<Representant> representant;
 	public void setClientCompteur(int clientCompteur) {
 		Client.clientCompteur = clientCompteur;}
 
-	
-	public int getnumVrpCompteur(){
-		return numVrpCompteur;}
-	
-	public void setnumVrpCompteur(int numVrp){
-		numVrpCompteur = numVrpCompteur;}
 
 	public  void setRepresentant(Representant value){
 		representant.set(value);}

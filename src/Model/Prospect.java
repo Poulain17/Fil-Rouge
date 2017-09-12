@@ -2,7 +2,9 @@ package Model;
 
 
 import Controleur.MainApp;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 
@@ -16,8 +18,8 @@ import javafx.beans.property.SimpleObjectProperty;
 public class Prospect extends Societe{
 	
 
-	private static int numVrpCompteur;
-	private String numVrp;
+	private static int CompteurProspect = 0;
+	private IntegerProperty numProspect;
 	public Prospect selectedProspect;
 	
 public MainApp mainApp;
@@ -26,38 +28,37 @@ private ObjectProperty<Representant> representant;
 
 
 	public Prospect(){
-		this(0,null,0,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
+		this(null,0,0,0,null,null,null,null,null,null,null,null,null,null,0);}
 
 
-	public Prospect(Integer indexType,String raisonSociale, Integer siren, Integer indexRegion, Integer idCompany, Integer numVoie,
-			String typeVoie, String voie, String complement, String codePostal, String ville, String nom, String prenom,
-			String mail, String tel, String numVrp, Integer nbCommande) {
-		super(indexType, raisonSociale, siren, indexRegion, idCompany, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
+	
+	public Prospect	(String raisonSociale, Integer siren, Integer indexRegion, Integer numVoie, String typeVoie, String voie, 
+			String complement, String codePostal, String ville, String nom, String prenom, String mail, String tel, String numVrp, Integer nbCommande) {
+		super(raisonSociale, siren, indexRegion, numVoie, typeVoie, voie, complement, codePostal, ville, nom,
 				prenom, mail, tel, numVrp, nbCommande);
-
-
-		this.setNbCommande(0);
 		
+		CompteurProspect ++;
+		this.numProspect = new SimpleIntegerProperty(CompteurProspect);
+		
+		this.setNbCommande(0);
+
 		for(Representant vrp : MainApp.getVrp()){
 			if(numVrp == (vrp.getNumVrp())){
-				this.representant = new SimpleObjectProperty<Representant>(vrp);} //end if	
-		}//end for
-	
-		numVrpCompteur ++;
-		String numCompteur = Integer.toString(numVrpCompteur);
-		numVrp = numCompteur;
+				this.representant = new SimpleObjectProperty<Representant>(vrp);}}//end for
+
+
 			
 	} //end Constuctor	
 	
-
-		
-	public int getnumVrpCompteur(){
-		return numVrpCompteur;
-	}
 	
-	public void setnumVrpCompteur(int numVrp){
-		numVrpCompteur = numVrpCompteur;
-	}
+	public Integer getNumProspect(){
+		return numProspect.get();}
+	
+	public void setNumProspect(Integer numProspect){
+		this.numProspect.set(numProspect);}
+	
+	public IntegerProperty numProspectProperty(){
+		return numProspect;}
 
 	public  void setRepresentant(Representant value){
 		representant.set(value);}
